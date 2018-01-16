@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>bc65657e-52e0-4a83-a55a-1e5fa0bd0670</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Comidat.Data</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Model\TBLMap.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Model\TBLPosition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Model\TBLReader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Model\TBLTag.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Data\" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>23dd4b15-66c4-4a3d-b3a6-428f87623d91</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Comidat.Runtime</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Runtime\Cli.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runtime\Command\Command.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runtime\Command\CommandManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runtime\Command\ConsoleCommands.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runtime\Helper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Runtime\Localization.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Runtime\" />
+  </ItemGroup>
+</Project>

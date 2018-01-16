@@ -1,0 +1,49 @@
+﻿//Namespace.Class.Method
+Title	Comidat Trace Server
+Header	       `+++++++                                                                               \n      +++++++++++                                           ,+:        +++                    \n     +++++++++++++                                          +++        ++'                ;,  \n    ++++++++;   .++                                         '++        ++'            `++,+   \n   ++++++++       .+                                                   +++            `++ ',  \n  .+++++++         `      ++++.   .++++;    ++ ++++  +++:   +++   `+++.++'   '++++.  ++++++.  \n  +++++++       ,+' +    ++++++  '+++++++   +++++++'+++++.  +++  `+++++++'  +++++++` ++++++,  \n  ++++++;      +++++.   +++   +  ++;  :++`  +++  ++++  +++  +++  +++  '++'  +`   +++  `++     \n  ++++++`     `++++++   ++:     ;++    ++'  ++   :++   +++  +++  ++:   ++'       +++  `++     \n `++++++      ;++++++   ++`     +++    +++  ++   ,++   +++  +++  ++    ++'   ;++++++  `++     \n `++++++      ,++++++   ++`     +++    +++  ++   ,++   +++  +++  ++`   ++'  +++';+++  `++     \n  ++++++,      ++++++   ++;     ;++    ++:  ++   ,++   +++  +++  ++;   ++'  ++   +++  `++     \n  +++++++       ++++,   +++. :+  +++  +++   ++   ,++   +++  +++  +++.`++++  ++   +++   ++:    \n  '++++++,          ,    ++++++  '++++++,   ++   ,++   +++  +++   +++++,+'  ++++++++   ++++,  \n   +++++++`        +      ;++;     '++'     ''   `''   ,';  :';    ++' `':   ;++. ':    +++   \n   ,+++++++'     ,+`                                                                          \n    '+++++++++++++;                                                                           \n     :+++++++++++.                                                                            \n       ++++++++'                                                                              \n         `:;,`                                                                                \n
+True	True
+False	False
+Comidat.Util.LogLevel.Info	Info
+Comidat.Util.LogLevel.Warning	Warning
+Comidat.Util.LogLevel.Error	Error
+Comidat.Util.LogLevel.Debug	Debug
+Comidat.Util.LogLevel.Status	Status
+Comidat.Util.LogLevel.Exception	Exception
+Comidat.Util.LogLevel.Unimplemented	Unimplemented
+Comidat.Util.Logger.Exception.Description	See log file for more details.
+Comidat.Util.FileReader.Constructor.FileNotFoundException	File '{0}' not found.
+Comidat.Util.FileReader.GetEnumerator.FileNotFoundException	Required file '{0}' not found.
+Comidat.Util.Cli.Exit.PressEnter	Press Enter to exit.
+Comidat.Util.Cli.Exit.Exiting	Exiting...
+Comidat.Util.Command.ConsoleCommands.Constructor.Help	help
+Comidat.Util.Command.ConsoleCommands.Constructor.Cls	cls
+Comidat.Util.Command.ConsoleCommands.Constructor.Exit	exit
+Comidat.Util.Command.ConsoleCommands.Constructor.Status	status
+Comidat.Util.Command.ConsoleCommands.Constructor.Debug	debug
+Comidat.Util.Command.ConsoleCommands.Constructor.Usage.Help	<CommandName>
+Comidat.Util.Command.ConsoleCommands.Constructor.Description.Help	Displays this help or command help
+Comidat.Util.Command.ConsoleCommands.Constructor.Description.CLS	Clean Screen
+Comidat.Util.Command.ConsoleCommands.Constructor.Description.Exit	Closes application/server
+Comidat.Util.Command.ConsoleCommands.Constructor.Description.Status	Displays application status
+Comidat.Util.Command.ConsoleCommands.Constructor.Description.Debug	Change debug visibility
+Comidat.Util.Command.ConsoleCommands.Wait.Help	Type 'help' for a list of console commands.
+Comidat.Util.Command.ConsoleCommands.Wait.Error.Fail	Failed to run command '{0}'.
+Comidat.Util.Command.ConsoleCommands.Wait.Info.Usage	Usage: {0} {1}
+Comidat.Util.Command.ConsoleCommands.HandleDebug.Info	Debug now is {0}
+Comidat.Util.Command.ConsoleCommands.HandleHelp.Info.Available	Available commands
+Comidat.Util.Command.ConsoleCommands.HandleHelp.Info.Unknown	Unknown command '{0}'
+Comidat.Util.Command.ConsoleCommands.HandleHelp.Info.Code	Name: {0} |Usage: {1}|Description: {2}
+Comidat.Util.Command.ConsoleCommands.HandleHelp.Info.Null	<NULL>
+Comidat.Util.Command.ConsoleCommands.HandleStatus.Status	Memory Usage: {0:N0} KB
+Comidat.Util.Command.Command.Constructor.InvalidOperationException	{0} is not a delegate type
+Comidat.Util.Command.ConsoleCommands.Wait.Info.Unknown	Unknown command '{0}'
+Comidat.Controller.Server.TCP.StartAsync.Exception	Error handling client: {0}
+Comidat.Controller.Server.TCP.StartAsync.ObjectDisposedException	TcpListener stopped listening because cancellation was requested.
+Comidat.Util.Packet.Constructor.NotValidException	Data not valid
+Comidat.Util.MacAddress.Constructor.NotValidException	Mac Address not valid type
+Comidat.Program.MainB.LoadingTime	Loading Time: {0}
+Comidat.Program.ServerOnDisconnected.Info	Disconnected Client:{0}
+Comidat.Program.ServerOnConnected.Info	Connected Client:{0}
+Comidat.Program.ServerOnMessageReceived.Debug.0	Client Id: {0}\tTag Mac: {1}\tTag Frequency: {2}\n
+Comidat.Program.ServerOnMessageReceived.Debug.1	\t\tMac: {0}\tRSSI: {1}\tR:{3}m\tSSID: {2}\n
+Comidat.Program.ServerOnMessageReceived.Debug.2	Client:{0}\tMessage:{1}

@@ -1,0 +1,68 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comidat.Windows", "Comidat.Windows\Comidat.Windows.csproj", "{E6FE3F18-D0B8-4075-84EE-F346B394D941}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Comidat.Data", "Comidat.Data\Comidat.Data.shproj", "{04A39069-7EB6-4FDE-B38E-C5A3521D0091}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Comidat", "Comidat\Comidat.shproj", "{90E2B1EE-CEB5-4D48-9BA2-6FB8C9BF6117}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Comidat.Net", "Comidat.Net\Comidat.Net.shproj", "{65DAD8E4-A7E4-4D54-8C70-E0D76C09780C}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Comidat.Diagnostics", "Comidat.Util\Comidat.Diagnostics.shproj", "{E7396D5B-2307-417C-B5DE-F66E92ABD1E5}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Comidat.IO", "Comidat.IO\Comidat.IO.shproj", "{D0478288-50BF-4308-87BD-E080B3F37CB3}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Comidat.Embed", "Comidat.Embed\Comidat.Embed.shproj", "{F812D763-2468-4790-80B8-55BABFD2224A}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Comidat.Runtime", "Comidat.Runtime\Comidat.Runtime.shproj", "{23DD4B15-66C4-4A3D-B3A6-428F87623D91}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Comidat.Data.Old", "Comidat.Data.Old\Comidat.Data.Old.shproj", "{BC65657E-52E0-4A83-A55A-1E5FA0BD0670}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Comidat.Model", "Comidat.Model\Comidat.Model.shproj", "{FB0AB056-ECE4-4448-B449-5870C9AD84B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comidat.Core", "Comidat.Core\Comidat.Core.csproj", "{5216E9A9-5A36-4707-B377-3823EF5AD273}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Comidat.Data\Comidat.Data.projitems*{04a39069-7eb6-4fde-b38e-c5a3521d0091}*SharedItemsImports = 13
+		Comidat.Runtime\Comidat.Runtime.projitems*{23dd4b15-66c4-4a3d-b3a6-428f87623d91}*SharedItemsImports = 13
+		Comidat.Net\Comidat.Net.projitems*{65dad8e4-a7e4-4d54-8c70-e0d76c09780c}*SharedItemsImports = 13
+		Comidat\Comidat.projitems*{90e2b1ee-ceb5-4d48-9ba2-6fb8c9bf6117}*SharedItemsImports = 13
+		Comidat.Data.Old\Comidat.Data.Old.projitems*{bc65657e-52e0-4a83-a55a-1e5fa0bd0670}*SharedItemsImports = 13
+		Comidat.IO\Comidat.IO.projitems*{d0478288-50bf-4308-87bd-e080b3f37cb3}*SharedItemsImports = 13
+		Comidat.Data.Old\Comidat.Data.Old.projitems*{e6fe3f18-d0b8-4075-84ee-f346b394d941}*SharedItemsImports = 4
+		Comidat.Embed\Comidat.Embed.projitems*{e6fe3f18-d0b8-4075-84ee-f346b394d941}*SharedItemsImports = 4
+		Comidat.IO\Comidat.IO.projitems*{e6fe3f18-d0b8-4075-84ee-f346b394d941}*SharedItemsImports = 4
+		Comidat.Model\Comidat.Model.projitems*{e6fe3f18-d0b8-4075-84ee-f346b394d941}*SharedItemsImports = 4
+		Comidat.Net\Comidat.Net.projitems*{e6fe3f18-d0b8-4075-84ee-f346b394d941}*SharedItemsImports = 4
+		Comidat.Runtime\Comidat.Runtime.projitems*{e6fe3f18-d0b8-4075-84ee-f346b394d941}*SharedItemsImports = 4
+		Comidat.Util\Comidat.Util.projitems*{e6fe3f18-d0b8-4075-84ee-f346b394d941}*SharedItemsImports = 4
+		Comidat\Comidat.projitems*{e6fe3f18-d0b8-4075-84ee-f346b394d941}*SharedItemsImports = 4
+		Comidat.Util\Comidat.Util.projitems*{e7396d5b-2307-417c-b5de-f66e92abd1e5}*SharedItemsImports = 13
+		Comidat.Embed\Comidat.Embed.projitems*{f812d763-2468-4790-80b8-55babfd2224a}*SharedItemsImports = 13
+		Comidat.Model\Comidat.Model.projitems*{fb0ab056-ece4-4448-b449-5870c9ad84b8}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E6FE3F18-D0B8-4075-84EE-F346B394D941}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6FE3F18-D0B8-4075-84EE-F346B394D941}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6FE3F18-D0B8-4075-84EE-F346B394D941}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6FE3F18-D0B8-4075-84EE-F346B394D941}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5216E9A9-5A36-4707-B377-3823EF5AD273}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5216E9A9-5A36-4707-B377-3823EF5AD273}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5216E9A9-5A36-4707-B377-3823EF5AD273}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5216E9A9-5A36-4707-B377-3823EF5AD273}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0DF6C905-7FA2-4557-8D89-1F862E559742}
+	EndGlobalSection
+EndGlobal

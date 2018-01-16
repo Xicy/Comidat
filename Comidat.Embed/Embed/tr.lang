@@ -1,0 +1,49 @@
+﻿//Namespace.Class.Method.
+
+
+True	Açık
+False	Kapalı
+
+
+
+
+
+
+
+Comidat.Util.Logger.Exception.Description	Daha fazla bilgi için günlük dosyasına bakın.
+Comidat.Util.FileReader.Constructor.FileNotFoundException	Dosya '{0}' bulunamadı.
+Comidat.Util.FileReader.GetEnumerator.FileNotFoundException	Gerekli dosya '{0}' bulunamadı.
+Comidat.Util.Cli.Exit.PressEnter	Enter tuşuna basın.
+Comidat.Util.Cli.Exit.Exiting	Exiting...
+Comidat.Util.Command.ConsoleCommands.Constructor.Help	help
+Comidat.Util.Command.ConsoleCommands.Constructor.Cls	cls
+Comidat.Util.Command.ConsoleCommands.Constructor.Exit	exit
+Comidat.Util.Command.ConsoleCommands.Constructor.Status	status
+Comidat.Util.Command.ConsoleCommands.Constructor.Debug	debug
+Comidat.Util.Command.ConsoleCommands.Constructor.Usage.Help	<CommandName>
+Comidat.Util.Command.ConsoleCommands.Constructor.Description.Help	Bu yardımı veya komut yardımını görüntüler
+Comidat.Util.Command.ConsoleCommands.Constructor.Description.CLS	Ekranı temizler
+Comidat.Util.Command.ConsoleCommands.Constructor.Description.Exit	Sunucuyu kapatır
+Comidat.Util.Command.ConsoleCommands.Constructor.Description.Status	Uygulama durumunu görüntüler
+Comidat.Util.Command.ConsoleCommands.Constructor.Description.Debug	Hata ayıklama görünürlüğünü değiştirme
+Comidat.Util.Command.ConsoleCommands.Wait.Help	 Konsol komutlarının bir listesi için 'help' yazın.
+Comidat.Util.Command.ConsoleCommands.Wait.Error.Fail	'{0}' komutu çalıştırılamadı.
+Comidat.Util.Command.ConsoleCommands.Wait.Info.Usage	Kullanım: {0} {1}
+Comidat.Util.Command.ConsoleCommands.HandleDebug.Info	Şu anda hata ayıklama {0}
+Comidat.Util.Command.ConsoleCommands.HandleHelp.Info.Available	Kullanılabilir komutlar
+Comidat.Util.Command.ConsoleCommands.HandleHelp.Info.Unknown	Bilinmeyen komut '{0}'
+Comidat.Util.Command.ConsoleCommands.HandleHelp.Info.Code	Adı: {0} | Kullanımı: {1} | Açıklama: {2}
+Comidat.Util.Command.ConsoleCommands.HandleHelp.Info.Null	<NULL>
+Comidat.Util.Command.ConsoleCommands.HandleStatus.Status	Bellek Kullanımı: {0:N0} KB
+Comidat.Util.Command.Command.Constructor.InvalidOperationException	{0} bir delegate türü değil.
+Comidat.Util.Command.ConsoleCommands.Wait.Info.Unknown	'{0}' Bilinmeyen komutu
+Comidat.Controller.Server.TCP.StartAsync.Exception	İstemci işleme hatası: {0}
+Comidat.Controller.Server.TCP.StartAsync.ObjectDisposedException	iptal edildiği için TcpListener dinlemeyi durdurdu.
+Comidat.Util.Packet.Constructor.NotValidException	Veri geçerli değil
+Comidat.Util.MacAddress.Constructor.NotValidException	Mac Adres türü geçerli değil 
+Comidat.Program.MainB.LoadingTime	Yükleme Süresi: {0}
+Comidat.Program.ServerOnDisconnected.Info	İstemci Bağlantısı Kesildi: {0}
+Comidat.Program.ServerOnConnected.Info	İstemci Bağlandı: {0}
+Comidat.Program.ServerOnMessageReceived.Debug.0	İstemci Kimliği: {0}\tTag Mac: {1}\tReader Frekansı: {2}\n
+Comidat.Program.ServerOnMessageReceived.Debug.1	\t\tMac: {0}\tRSSI: {1}\tR:{3}m\tSSID: {2}\n
+Comidat.Program.ServerOnMessageReceived.Debug.2	İstemci: {0}\tMesaj: {1}

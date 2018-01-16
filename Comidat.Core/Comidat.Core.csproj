@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <ApplicationIcon>Comidat.ico</ApplicationIcon>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Comidat.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>true</DelaySign>
+    <AssemblyName>Comidat</AssemblyName>
+    <RootNamespace>Comidat</RootNamespace>
+    <StartupObject />
+    <Authors>Xicy</Authors>
+    <Description>Personal Trace</Description>
+    <AssemblyVersion>1.0.0.1</AssemblyVersion>
+  </PropertyGroup>
+
+  <Import Project="..\Comidat\Comidat.projitems" Label="Shared" />
+
+  <Import Project="..\Comidat.Data.Old\Comidat.Data.Old.projitems" Label="Shared" />
+
+  <Import Project="..\Comidat.Util\Comidat.Util.projitems" Label="Shared" />
+
+  <Import Project="..\Comidat.Embed\Comidat.Embed.projitems" Label="Shared" />
+
+  <Import Project="..\Comidat.IO\Comidat.IO.projitems" Label="Shared" />
+
+  <Import Project="..\Comidat.Model\Comidat.Model.projitems" Label="Shared" />
+
+  <Import Project="..\Comidat.Net\Comidat.Net.projitems" Label="Shared" />
+
+  <Import Project="..\Comidat.Runtime\Comidat.Runtime.projitems" Label="Shared" />
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.1" />
+    <PackageReference Include="MQTTnet" Version="2.6.0" />
+  </ItemGroup>
+
+</Project>

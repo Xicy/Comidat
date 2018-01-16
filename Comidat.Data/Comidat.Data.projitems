@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>04a39069-7eb6-4fde-b38e-c5a3521d0091</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Comidat.Data</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DatabaseContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Model\Admin.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Model\ESP.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Model\Location.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Model\Map.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Model\Reader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Model\Tag.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Data\" />
+  </ItemGroup>
+</Project>

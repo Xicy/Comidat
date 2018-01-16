@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>65dad8e4-a7e4-4d54-8c70-e0d76c09780c</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Comidat.Net</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Net\EventArgs\ConnectedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Net\EventArgs\DisconnectedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Net\EventArgs\MessageReceivedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Net\IServer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Net\MQTT.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Net\TCP.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Net\UDP.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Net\EventArgs\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Net\" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>fb0ab056-ece4-4448-b449-5870c9ad84b8</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Comidat.Model</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Model\FSPL.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\IPacket.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\IReader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\ITag.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\MacAddress.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Packet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Reader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Tag.cs" />
+  </ItemGroup>
+</Project>
