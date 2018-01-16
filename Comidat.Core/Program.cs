@@ -81,7 +81,7 @@ namespace Comidat
 
         private static void UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            var ee = (Exception) e.ExceptionObject;
+            var ee = (Exception)e.ExceptionObject;
             Logger.Exception(ee, ee.Message);
         }
 
@@ -91,47 +91,15 @@ namespace Comidat
             //Logger.Debug(Localization.Get("Comidat.Program.ServerOnMessageReceived.Debug.2"), e.Client, Encoding.UTF8.GetString(e.Message).Trim());
             var packet = new Packet(Encoding.UTF8.GetString(e.Message));
             if (packet.Count == 0) return;
-            //Global.PacketAdd(packet);
             var r0 = packet.Where(tag => tag.RSSI < 100).OrderBy(tag => tag.RSSI).Join(
                 Global.Readers.Values,
                 address => address.ReaderMacAddress,
                 reader => new MacAddress(reader.rd_mac_address),
-                (address, reader) => new {a = address, r = reader}
+                (address, reader) => new { a = address, r = reader }
             );
             try
             {
-                //TODO:Feature Method Calculation Location
-#if False
-                int sz = r0.Count();
-                if (sz == 1)
-                {
-                    var tf = r0.First();
-                    Logger.Debug("Tag: {0}\t \t X: {1}\tY: {2}\tZ: {3}", tf.a.MacAddress, tf.r.X, tf.r.Y, tf.r.Z);
-                    //Global.Database.Locations.Add(new Location { ESP = Global.Esps[tf.a.MacAddress], X = tf.r.X,, Y = tf.r.Y, Z = tf.r.Z, TX = tf.r.X, TY = tf.r.Y });
-                }
-                else if (sz > 1)
-                {
-                    double xk = 0, yk = 0, zk = 0;
-                    foreach (var k in Helper.Combinations(r0, 2))
-                    {
-                        var t = k.ToArray();
-                        var tf = t[0];
-                        var tl = t[1];
-                        var r1 = Helper.CalculateDistance(FSPL.MeterAndMegaHertz, tf.a.RSSI, 2412);
-                        var r2 = Helper.CalculateDistance(FSPL.MeterAndMegaHertz, tl.a.RSSI, 2412);
-                        var totalStep = r1 + r2;
-                        xk += tf.r.X + (tl.r.X - tf.r.X) * (r1 / totalStep);
-                        yk += tf.r.Y + (tl.r.Y - tf.r.Y) * (r1 / totalStep);
-                        zk += tf.r.Z + (tl.r.Z - tf.r.Z) * (r1 / totalStep);
-                        Logger.Debug("Tag: {0}\t \t X: {1}\tY: {2}\tZ: {3}", tf.a.MacAddress, xk, yk, zk);
-                    }
-                    double s = Helper.Combination(sz, 2);
-                    xk /= s;
-                    yk /= s;
-                    zk /= s;
-                    Logger.Debug("Tag: {0}\t \t X: {1}\tY: {2}\tZ: {3}", r0.First().a.MacAddress, xk, yk, zk);
-                }
-#else
+
                 var readers = r0.Take(2).ToArray();
                 if (readers.Length == 1)
                 {
@@ -140,9 +108,9 @@ namespace Comidat
                         tf.r.d_rd_pos_y, tf.r.rd_pos_z);
                     Global.Database.TBLPositions.Add(new TBLPosition
                     {
-                        d_XPosition = (int) tf.r.d_rd_pos_x,
-                        d_yPosition = (int) tf.r.d_rd_pos_y,
-                        TagId = (int) tf.a.ReaderMacAddress.GetLong(),
+                        d_XPosition = (int)tf.r.d_rd_pos_x,
+                        d_yPosition = (int)tf.r.d_rd_pos_y,
+                        TagId = (int)tf.a.ReaderMacAddress.GetLong(),
                         MapId = tf.r.MapId
                     });
                 }
@@ -150,25 +118,23 @@ namespace Comidat
                 {
                     var tf = readers[0];
                     var tl = readers[1];
-                    //var reader1 = Global.GetReader(tf.a.ReaderMacAddress);
-                    //var reader2 = Global.GetReader(tl.a.ReaderMacAddress);
-                    //if (reader1 == null || reader2 == null) continue;
-                    var r1 = Helper.CalculateDistance(FSPL.MeterAndMegaHertz, tf.a.RSSI, 2412);
-                    var r2 = Helper.CalculateDistance(FSPL.MeterAndMegaHertz, tl.a.RSSI, 2412);
+                    var r1 = Global.Distances[tf.a.RSSI];
+                    var r2 = Global.Distances[tf.a.RSSI];
                     var totalStep = r1 + r2;
                     var x = tf.r.d_rd_pos_x + (tl.r.d_rd_pos_x - tf.r.d_rd_pos_x) * (r1 / totalStep);
                     var y = tf.r.d_rd_pos_y + (tl.r.d_rd_pos_y - tf.r.d_rd_pos_y) * (r1 / totalStep);
                     var z = tf.r.rd_pos_z + (tl.r.rd_pos_z - tf.r.rd_pos_z) * (r1 / totalStep);
                     Logger.Debug("Tag: {0}\t \t X: {1}\tY: {2}\tZ: {3}", tf.a.MacAddress, x, y, z);
+
+                    var tagid = Global.tags.First(t => t.TagMacAddress == tf.a.MacAddress.GetLong().ToString()).Id;
                     Global.Database.TBLPositions.Add(new TBLPosition
                     {
-                        d_XPosition = (int) x,
-                        d_yPosition = (int) y,
-                        TagId = (int) (tf.a.MacAddress.GetLong() & 0x0000FFFF),
+                        d_XPosition = (int)x,
+                        d_yPosition = (int)y,
+                        TagId = tagid,
                         MapId = tf.r.MapId
                     });
                 }
-#endif
             }
             catch (InvalidOperationException ex)
             {

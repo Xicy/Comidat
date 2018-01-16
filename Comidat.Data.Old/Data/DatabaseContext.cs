@@ -14,8 +14,8 @@ namespace Comidat.Data
         private readonly string _user;
 
         //#if DEBUG
-        //public DatabaseContext() : this(".", "MinePts", "sa", "comidat") { }
-        public DatabaseContext() : this("sql.lc", "ComidatOld", "SA", "Umut1996") { }
+        public DatabaseContext() : this(".", "MinePts", "sa", "comidat") { }
+        //public DatabaseContext() : this("sql.lc", "ComidatOld", "SA", "Umut1996") { }
         //#endif
 
         public DatabaseContext(string server, string database, string user, string password)
