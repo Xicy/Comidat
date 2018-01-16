@@ -44,8 +44,13 @@
     </None>
   </ItemGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(Configuration)'=='Release'">
     <Exec WorkingDirectory="$(TargetDir)" Command="$(Obfuscar) obfuscar.xml" />
+    <ItemGroup>
+      <FilesToMove Include="$(TargetDir)\Confused\*" />
+    </ItemGroup>
+    <Move SourceFiles="@(FilesToMove)" DestinationFolder="$(TargetDir)" />
+    <RemoveDir Directories="$(TargetDir)\Confused" />
   </Target>
 
 </Project>
