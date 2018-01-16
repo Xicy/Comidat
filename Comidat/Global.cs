@@ -1,20 +1,32 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Linq;
 using System.Threading.Tasks;
 using Comidat.Data;
 using Comidat.Data.Model;
 using Comidat.Diagnostics;
 using Comidat.Model;
+using Comidat.Runtime;
 
 namespace Comidat
 {
     public static class Global
     {
+        static Global()
+        {
+            for (int i = 0; i < 101; i++)
+                Distances[i] = Helper.CalculateDistance(FSPL.MeterAndMegaHertz, i, 2412);
+        }
+
         public static readonly DatabaseContext Database = new DatabaseContext();
 
         //public static readonly ConcurrentDictionary<MacAddress, object> Esps = new ConcurrentDictionary<MacAddress, object>();
         public static readonly ConcurrentDictionary<MacAddress, TBLReader> Readers =
             new ConcurrentDictionary<MacAddress, TBLReader>();
+
+        public static readonly TBLTag[] tags = Database.TBLTags.ToArray();
+
+        public static readonly double[] Distances = new double[101];
         //private static readonly ConcurrentDictionary<MacAddress, ConcurrentQueue<ITag>> TBLTags = new ConcurrentDictionary<MacAddress, ConcurrentQueue<ITag>>();
 
         /*public static void SeedForTestFromFile()
