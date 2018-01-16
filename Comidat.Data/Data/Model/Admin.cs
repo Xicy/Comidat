@@ -6,19 +6,19 @@ namespace Comidat.Data.Model
     public class Admin
     {
         [Key]
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public int Id { set; get; }
 
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public string UserName { set; get; }
 
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public string Email { set; get; }
 
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public string Password { set; get; }
 
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public DateTime LastLoginDateTime { set; get; }
     }
 }

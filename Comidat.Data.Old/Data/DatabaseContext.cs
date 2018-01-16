@@ -29,16 +29,16 @@ namespace Comidat.Data
             Database.EnsureCreated();
         }
 
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public DbSet<TBLMap> TBLMaps { get; set; }
 
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public DbSet<TBLPosition> TBLPositions { get; set; }
 
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public DbSet<TBLReader> TBLReaders { get; set; }
 
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public DbSet<TBLTag> TBLTags { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

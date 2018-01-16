@@ -13,6 +13,7 @@
     <Authors>Xicy</Authors>
     <Description>Personal Trace</Description>
     <AssemblyVersion>1.0.0.1</AssemblyVersion>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
 
   <Import Project="..\Comidat\Comidat.projitems" Label="Shared" />
@@ -34,6 +35,17 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.1" />
     <PackageReference Include="MQTTnet" Version="2.6.0" />
+    <PackageReference Include="Obfuscar" Version="2.2.11" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Update="obfuscar.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec WorkingDirectory="$(TargetDir)" Command="$(Obfuscar) obfuscar.xml" />
+  </Target>
 
 </Project>

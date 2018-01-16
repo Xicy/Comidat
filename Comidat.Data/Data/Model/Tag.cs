@@ -13,22 +13,22 @@ namespace Comidat.Data.Model
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public long TcNumber { set; get; }
 
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public string FirstName { set; get; }
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public string LastName { set; get; }
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public string Phone { set; get; }
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public string MobilePhone { set; get; }
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public DateTime BirthDate { set; get; }
 
         // ReSharper disable once InconsistentNaming
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public virtual ESP ESP { set; get; }
     }
 }

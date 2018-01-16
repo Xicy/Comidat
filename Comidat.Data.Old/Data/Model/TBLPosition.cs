@@ -12,31 +12,31 @@ namespace Comidat.Data.Model
         }
 
         [Key]
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public long Id { get; set; }
 
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public long TagId { get; set; }
 
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public int MapId { get; set; }
 
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public int XPosition { get; set; }
 
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public int YPosition { get; set; }
 
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public int ZPosition { get; set; }
 
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public int d_XPosition { get; set; }
 
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public int d_yPosition { get; set; }
 
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public DateTime RecordDateTime { get; set; }
     }
 }

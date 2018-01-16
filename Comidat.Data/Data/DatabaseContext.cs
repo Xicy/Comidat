@@ -26,17 +26,17 @@ namespace Comidat.Data
         }
 
         // ReSharper disable once InconsistentNaming
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public DbSet<ESP> ESPs { get; set; }
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public DbSet<Tag> TBLTags { get; set; }
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public DbSet<Reader> TBLReaders { get; set; }
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public DbSet<Location> Locations { get; set; }
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public DbSet<Map> TBLMaps { get; set; }
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public DbSet<Admin> Admins { get; set; }
 
 

@@ -9,7 +9,7 @@ namespace Comidat.Data.Model
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [ForeignKey("MacId")]
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public long Id { private set; get; }
 
         [NotMapped]
@@ -31,18 +31,18 @@ namespace Comidat.Data.Model
             }
         }
 
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public string Ip { set; get; }
 
         // ReSharper disable once InconsistentNaming
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public string SSID { set; get; }
 
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public bool Active { set; get; }
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public byte Batary { set; get; }
-        [Obfuscation(Exclude = false, Feature = "-rename")]
+        [Obfuscation(Exclude = true)]
         public string Description { set; get; }
     }
 }

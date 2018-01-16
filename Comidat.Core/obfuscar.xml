@@ -1,0 +1,16 @@
+<?xml version='1.0'?>
+<Obfuscator>
+  <Var name="InPath" value="." />
+  <Var name="OutPath" value=".\Confused" />
+  <Var name="ReuseNames" value="true" />
+  <Var name="SuppressIldasm" value="true" />
+  <Var name="OptimizeMethods" value="true" />
+  <Var name="UseKoreanNames" value="false" />
+  <Var name="HideStrings" value="true" />
+  <Var name="HidePrivateApi" value="true" />
+  <Var name="KeepPublicApi" value="false" />
+  <Var name="KeyFile" value="..\..\..\Comidat.snk" />
+  <Module file="$(InPath)\Comidat.dll"/>
+  <AssemblySearchPath path="C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.netcore.app\2.0.0\ref\netcoreapp2.0" />
+  <AssemblySearchPath path="C:\Users\umuta\Desktop\Comidat\Comidat.Core\bin\Release\PublishOutput" />
+</Obfuscator>
