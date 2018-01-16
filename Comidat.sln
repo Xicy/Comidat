@@ -23,7 +23,9 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Comidat.Data.Old", "Comidat
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Comidat.Model", "Comidat.Model\Comidat.Model.shproj", "{FB0AB056-ECE4-4448-B449-5870C9AD84B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comidat.Core", "Comidat.Core\Comidat.Core.csproj", "{5216E9A9-5A36-4707-B377-3823EF5AD273}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Comidat.Core", "Comidat.Core\Comidat.Core.csproj", "{5216E9A9-5A36-4707-B377-3823EF5AD273}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solutions", "Solutions", "{3D8D2A6E-F1E4-4A7A-8D4E-6F63D1BD6351}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -61,6 +63,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E6FE3F18-D0B8-4075-84EE-F346B394D941} = {3D8D2A6E-F1E4-4A7A-8D4E-6F63D1BD6351}
+		{5216E9A9-5A36-4707-B377-3823EF5AD273} = {3D8D2A6E-F1E4-4A7A-8D4E-6F63D1BD6351}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0DF6C905-7FA2-4557-8D89-1F862E559742}
