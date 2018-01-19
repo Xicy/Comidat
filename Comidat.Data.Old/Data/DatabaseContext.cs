@@ -1,6 +1,4 @@
-﻿//using Comidat.Data.Model;
-
-using System.Reflection;
+﻿using System.Reflection;
 using Comidat.Data.Model;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,8 +12,9 @@ namespace Comidat.Data
         private readonly string _user;
 
         //#if DEBUG
-        public DatabaseContext() : this(".", "MinePts", "sa", "comidat") { }
-        //public DatabaseContext() : this("sql.lc", "ComidatOld", "SA", "Umut1996") { }
+        public DatabaseContext() : this(".", "MinePts", "sa", "comidat")
+        //public DatabaseContext() : this("sql.lc", "ComidatOld", "SA", "Umut1996")
+        { }
         //#endif
 
         public DatabaseContext(string server, string database, string user, string password)
@@ -29,17 +28,13 @@ namespace Comidat.Data
             Database.EnsureCreated();
         }
 
-        [Obfuscation(Exclude = true)]
-        public DbSet<TBLMap> TBLMaps { get; set; }
+        [Obfuscation(Exclude = true)] public DbSet<TBLMap> TBLMaps { get; set; }
 
-        [Obfuscation(Exclude = true)]
-        public DbSet<TBLPosition> TBLPositions { get; set; }
+        [Obfuscation(Exclude = true)] public DbSet<TBLPosition> TBLPositions { get; set; }
 
-        [Obfuscation(Exclude = true)]
-        public DbSet<TBLReader> TBLReaders { get; set; }
+        [Obfuscation(Exclude = true)] public DbSet<TBLReader> TBLReaders { get; set; }
 
-        [Obfuscation(Exclude = true)]
-        public DbSet<TBLTag> TBLTags { get; set; }
+        [Obfuscation(Exclude = true)] public DbSet<TBLTag> TBLTags { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
