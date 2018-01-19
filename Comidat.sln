@@ -27,10 +27,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Comidat.Core", "Comidat.Cor
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solutions", "Solutions", "{3D8D2A6E-F1E4-4A7A-8D4E-6F63D1BD6351}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comidat.Windows.Client", "Comidat.Windows.Client\Comidat.Windows.Client.csproj", "{3FF7256A-F70D-4DFC-97CB-AAAE706C695C}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Comidat.Data\Comidat.Data.projitems*{04a39069-7eb6-4fde-b38e-c5a3521d0091}*SharedItemsImports = 13
 		Comidat.Runtime\Comidat.Runtime.projitems*{23dd4b15-66c4-4a3d-b3a6-428f87623d91}*SharedItemsImports = 13
+		Comidat.Data.Old\Comidat.Data.Old.projitems*{3ff7256a-f70d-4dfc-97cb-aaae706c695c}*SharedItemsImports = 4
 		Comidat.Net\Comidat.Net.projitems*{65dad8e4-a7e4-4d54-8c70-e0d76c09780c}*SharedItemsImports = 13
 		Comidat\Comidat.projitems*{90e2b1ee-ceb5-4d48-9ba2-6fb8c9bf6117}*SharedItemsImports = 13
 		Comidat.Data.Old\Comidat.Data.Old.projitems*{bc65657e-52e0-4a83-a55a-1e5fa0bd0670}*SharedItemsImports = 13
@@ -60,6 +63,10 @@ Global
 		{5216E9A9-5A36-4707-B377-3823EF5AD273}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5216E9A9-5A36-4707-B377-3823EF5AD273}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5216E9A9-5A36-4707-B377-3823EF5AD273}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FF7256A-F70D-4DFC-97CB-AAAE706C695C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FF7256A-F70D-4DFC-97CB-AAAE706C695C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FF7256A-F70D-4DFC-97CB-AAAE706C695C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FF7256A-F70D-4DFC-97CB-AAAE706C695C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +74,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{E6FE3F18-D0B8-4075-84EE-F346B394D941} = {3D8D2A6E-F1E4-4A7A-8D4E-6F63D1BD6351}
 		{5216E9A9-5A36-4707-B377-3823EF5AD273} = {3D8D2A6E-F1E4-4A7A-8D4E-6F63D1BD6351}
+		{3FF7256A-F70D-4DFC-97CB-AAAE706C695C} = {3D8D2A6E-F1E4-4A7A-8D4E-6F63D1BD6351}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0DF6C905-7FA2-4557-8D89-1F862E559742}
