@@ -9,9 +9,7 @@
     <Import_RootNamespace>Comidat.Diagnostics</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\ExceptionHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\Logger.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Diagnostics\" />
   </ItemGroup>
 </Project>
