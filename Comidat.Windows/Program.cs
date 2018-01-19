@@ -23,7 +23,7 @@ namespace Comidat
 
         private static void Main(string[] args)
         {
-            AppDomain.CurrentDomain.UnhandledException += UnhandledException;
+            ExceptionHandler.InstallExceptionHandler();
 
             var sw = new Stopwatch();
             sw.Start();
@@ -81,7 +81,7 @@ namespace Comidat
 
         private static void UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            var ee = (Exception) e.ExceptionObject;
+            var ee = (Exception)e.ExceptionObject;
             Logger.Exception(ee, ee.Message);
         }
 
@@ -95,7 +95,7 @@ namespace Comidat
                 Global.Readers.Values,
                 address => address.ReaderMacAddress,
                 reader => new MacAddress(reader.rd_mac_address),
-                (address, reader) => new {a = address, r = reader}
+                (address, reader) => new { a = address, r = reader }
             );
             try
             {
@@ -108,9 +108,9 @@ namespace Comidat
                         tf.r.d_rd_pos_y, tf.r.rd_pos_z);
                     Global.Database.TBLPositions.Add(new TBLPosition
                     {
-                        d_XPosition = (int) tf.r.d_rd_pos_x,
-                        d_yPosition = (int) tf.r.d_rd_pos_y,
-                        TagId = (int) tf.a.ReaderMacAddress.GetLong(),
+                        d_XPosition = (int)tf.r.d_rd_pos_x,
+                        d_yPosition = (int)tf.r.d_rd_pos_y,
+                        TagId = (int)tf.a.ReaderMacAddress.GetLong(),
                         MapId = tf.r.MapId
                     });
                 }
@@ -125,12 +125,12 @@ namespace Comidat
                     var y = tf.r.d_rd_pos_y + (tl.r.d_rd_pos_y - tf.r.d_rd_pos_y) * (r1 / totalStep);
                     var z = tf.r.rd_pos_z + (tl.r.rd_pos_z - tf.r.rd_pos_z) * (r1 / totalStep);
                     Logger.Debug("Tag: {0}\t \t X: {1}\tY: {2}\tZ: {3}", tf.a.MacAddress, x, y, z);
-                    
+
                     var tagid = Global.tags.First(t => t.TagMacAddress == tf.a.MacAddress.GetLong().ToString()).Id;
                     Global.Database.TBLPositions.Add(new TBLPosition
                     {
-                        d_XPosition = (int) x,
-                        d_yPosition = (int) y,
+                        d_XPosition = (int)x,
+                        d_yPosition = (int)y,
                         TagId = tagid,
                         MapId = tf.r.MapId
                     });
