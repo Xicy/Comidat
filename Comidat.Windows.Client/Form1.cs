@@ -16,18 +16,18 @@ namespace Comidat.Windows.Client
         private readonly BaseFont baseFont;
         public Form1()
         {
-            Logger.Archive = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Logs");
-            Logger.LogFile = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Logs","Comidat.Client.log");
-
-            ExceptionHandler.InstallExceptionHandler();
-
             InitializeComponent();
 
             Database = new DatabaseContext();
             baseFont = BaseFont.CreateFont(Environment.GetEnvironmentVariable("windir") + @"\fonts\Arial.TTF", BaseFont.IDENTITY_H, true);
-            dateTimePicker.MinDate = Database.TBLPositions.Min(p => p.RecordDateTime);
-            dateTimePicker.MaxDate = Database.TBLPositions.Min(p => p.RecordDateTime);
-            dateTimePicker.Value = DateTime.Now.Date == dateTimePicker.MaxDate ? DateTime.Today : dateTimePicker.MaxDate;
+
+            dateTimePickerFirst.MinDate = Database.TBLPositions.Min(p => p.RecordDateTime);
+            dateTimePickerFirst.MaxDate = Database.TBLPositions.Min(p => p.RecordDateTime);
+            dateTimePickerFirst.Value = DateTime.Now.Date == dateTimePickerFirst.MinDate ? DateTime.Today : dateTimePickerFirst.MinDate;
+
+            dateTimePickerLast.MinDate = Database.TBLPositions.Min(p => p.RecordDateTime);
+            dateTimePickerLast.MaxDate = Database.TBLPositions.Min(p => p.RecordDateTime);
+            dateTimePickerLast.Value = DateTime.Now.Date == dateTimePickerLast.MaxDate ? DateTime.Today : dateTimePickerLast.MaxDate;
         }
 
         private void exportButton_Click(object sender, EventArgs e)
@@ -42,7 +42,7 @@ namespace Comidat.Windows.Client
                 if (sfd.ShowDialog() != DialogResult.OK) return;
 
                 var test = Database.TBLPositions
-                    .Where(p => p.RecordDateTime.Date == dateTimePicker.Value.Date)
+                    .Where(p => p.RecordDateTime.Date >= dateTimePickerFirst.Value.Date && p.RecordDateTime.Date <= dateTimePickerLast.Value.Date)
                     .OrderBy(p => p.TagId)
                     .ThenByDescending(p => p.RecordDateTime)
                     .Join(Database.TBLMaps, p => p.MapId, m => m.Id,
@@ -59,7 +59,7 @@ namespace Comidat.Windows.Client
                 table.AddCell("Harita");
                 table.AddCell("X");
                 table.AddCell("Y");
-                table.AddCell("Saat");
+                table.AddCell("Tarih");
                 foreach (var obj in test)
                 {
                     table.AddCell(obj.Tag.TagFirstName);
@@ -67,7 +67,7 @@ namespace Comidat.Windows.Client
                     table.AddCell(obj.Map.MapName);
                     table.AddCell(obj.Position.d_XPosition.ToString());
                     table.AddCell(obj.Position.d_yPosition.ToString());
-                    table.AddCell(obj.Position.RecordDateTime.TimeOfDay.ToString(@"hh\:mm\:ss"));
+                    table.AddCell(obj.Position.RecordDateTime.ToString("g"));
                 }
 
                 document.Add(table);
