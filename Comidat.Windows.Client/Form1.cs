@@ -1,10 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Windows.Forms;
 using Comidat.Data;
-using Comidat.Diagnostics;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
@@ -30,7 +28,7 @@ namespace Comidat.Windows.Client
             dateTimePickerLast.Value = DateTime.Now.Date == dateTimePickerLast.MaxDate ? DateTime.Today : dateTimePickerLast.MaxDate;
         }
 
-        private void exportButton_Click(object sender, EventArgs e)
+        private void ExportButton_Click(object sender, EventArgs e)
         {
 
             using (SaveFileDialog sfd = new SaveFileDialog())
@@ -71,9 +69,9 @@ namespace Comidat.Windows.Client
                 }
 
                 document.Add(table);
-                document.Close();
-                writer.Close();
-                ms.Close();
+                //document.Close();
+                //writer.Close();
+                //ms.Close();
 
                 File.WriteAllBytes(sfd.FileName, ms.GetBuffer());
             }
