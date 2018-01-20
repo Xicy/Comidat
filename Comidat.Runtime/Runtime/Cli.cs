@@ -54,7 +54,7 @@ namespace Comidat.Runtime
         public static void LoadingTitle()
         {
             if (!Console.Title.StartsWith("* "))
-                Console.Title = "* " + Console.Title;
+                Console.Title = @"* " + Console.Title;
         }
 
         /// <summary>

@@ -21,7 +21,7 @@ namespace Comidat
     {
         private const int ProgressStep = 7;
 
-        private static void Main(string[] args)
+        private static void Main()
         {
             AppDomain.CurrentDomain.UnhandledException += UnhandledException;
 
@@ -167,7 +167,7 @@ namespace Comidat
         }
 
 
-        private static async Task Test(IServer server)
+        private static async Task Test()
         {
             var r = new Random(DateTime.Now.Second);
             var client = new TcpClient();

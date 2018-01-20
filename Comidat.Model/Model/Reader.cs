@@ -11,6 +11,8 @@ namespace Comidat.Model
         /// </summary>
         /// <param name="macAddress">Mac Address of reader</param>
         /// <param name="frequency">Signal Frequency of reader</param>
+        /// <param name="x">X Cordinate of Reader</param>
+        /// <param name="y">Y Cordinate of Reader</param>
         public Reader(MacAddress macAddress, uint frequency, int x, int y)
         {
             MacAddress = macAddress;

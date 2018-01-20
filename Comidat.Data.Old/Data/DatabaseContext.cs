@@ -18,7 +18,7 @@ namespace Comidat.Data
 #endif
         { }
 
-        public DatabaseContext(string server, string database, string user, string password)
+        private DatabaseContext(string server, string database, string user, string password)
         {
             _server = server;
             _database = database;

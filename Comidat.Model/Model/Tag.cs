@@ -36,7 +36,7 @@ namespace Comidat.Model
 
         public bool Equals(ITag other)
         {
-            return MacAddress.Equals(other.MacAddress) && ReaderMacAddress.Equals(other.ReaderMacAddress);
+            return other != null && (MacAddress.Equals(other.MacAddress) && ReaderMacAddress.Equals(other.ReaderMacAddress));
         }
 
         public override bool Equals(object obj)

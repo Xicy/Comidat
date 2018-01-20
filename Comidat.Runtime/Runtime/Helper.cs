@@ -9,7 +9,7 @@ namespace Comidat.Runtime
         /// <summary>
         ///     Calculate distance between router and client
         /// </summary>
-        /// <param name="flspConst">Constan for unit of meter kilometer <see cref="FSPL" /></param>
+        /// <param name="flspConst">Constan for unit of meter kilometer</param>
         /// <param name="signalLevelInDb">Signal RSSI </param>
         /// <param name="freq">Frequancy of signal</param>
         /// <seealso>

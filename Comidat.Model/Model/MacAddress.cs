@@ -79,7 +79,7 @@ namespace Comidat.Model
 
         public bool Equals(MacAddress other)
         {
-            return other.GetLong() == GetLong();
+            return other != null && other.GetLong() == GetLong();
         }
 
         /// <summary>
