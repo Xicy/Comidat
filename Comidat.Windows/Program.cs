@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Comidat.Data.Model;
@@ -21,7 +20,7 @@ namespace Comidat
     {
         private const int ProgressStep = 7;
 
-        private static void Main(string[] args)
+        private static void Main()
         {
             ExceptionHandler.InstallExceptionHandler();
 
@@ -33,8 +32,8 @@ namespace Comidat
             Logger.Progress(0, ProgressStep);
 
             //Logger Settings Up
-            Logger.Archive = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Logs");
-            Logger.LogFile = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Logs",
+            Logger.Archive = Path.Combine(Environment.CurrentDirectory, "Logs");
+            Logger.LogFile = Path.Combine(Environment.CurrentDirectory, "Logs",
                 "Comidat.log");
             Logger.Progress(1, ProgressStep);
 
@@ -77,12 +76,6 @@ namespace Comidat
             Global.SaveDataBaseAync().Wait(0);
 
             console.Wait();
-        }
-
-        private static void UnhandledException(object sender, UnhandledExceptionEventArgs e)
-        {
-            var ee = (Exception)e.ExceptionObject;
-            Logger.Exception(ee, ee.Message);
         }
 
         private static void ServerOnMessageReceived(object sender, MessageReceivedEventArgs e)
@@ -167,7 +160,7 @@ namespace Comidat
         }
 
 
-        private static async Task Test(IServer server)
+        private static async Task Test()
         {
             var r = new Random(DateTime.Now.Second);
             var client = new TcpClient();
