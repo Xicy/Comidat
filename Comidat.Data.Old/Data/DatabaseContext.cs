@@ -11,11 +11,12 @@ namespace Comidat.Data
         private readonly string _server;
         private readonly string _user;
 
-        //#if DEBUG
+#if DEBUG
+        public DatabaseContext() : this("sql.lc", "ComidatOld", "SA", "Umut1996")
+#else
         public DatabaseContext() : this(".", "MinePts", "sa", "comidat")
-        //public DatabaseContext() : this("sql.lc", "ComidatOld", "SA", "Umut1996")
+#endif
         { }
-        //#endif
 
         public DatabaseContext(string server, string database, string user, string password)
         {
