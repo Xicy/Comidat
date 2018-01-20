@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 using Comidat.Data;
+using Comidat.Diagnostics;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
@@ -11,11 +12,18 @@ namespace Comidat.Windows.Client
 {
     public partial class Form1 : Form
     {
-        private static readonly DatabaseContext Database = new DatabaseContext();
+        private static DatabaseContext Database;
         private readonly BaseFont baseFont;
         public Form1()
         {
+            Logger.Archive = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Logs");
+            Logger.LogFile = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Logs","Comidat.Client.log");
+
+            ExceptionHandler.InstallExceptionHandler();
+
             InitializeComponent();
+
+            Database = new DatabaseContext();
             baseFont = BaseFont.CreateFont(Environment.GetEnvironmentVariable("windir") + @"\fonts\Arial.TTF", BaseFont.IDENTITY_H, true);
             dateTimePicker.MinDate = Database.TBLPositions.Min(p => p.RecordDateTime);
             dateTimePicker.MaxDate = Database.TBLPositions.Min(p => p.RecordDateTime);
