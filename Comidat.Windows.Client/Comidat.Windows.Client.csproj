@@ -58,7 +58,7 @@
     <AssemblyOriginatorKeyFile>Comidat.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <DelaySign>false</DelaySign>
+    <DelaySign>true</DelaySign>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Costura, Version=1.6.2.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
@@ -173,6 +173,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="..\Comidat.Data.Old\Comidat.Data.Old.projitems" Label="Shared" />
+  <Import Project="..\Comidat.Util\Comidat.Util.projitems" Label="Shared" />
+  <Import Project="..\Comidat.IO\Comidat.IO.projitems" Label="Shared" />
+  <Import Project="..\Comidat.Runtime\Comidat.Runtime.projitems" Label="Shared" />
+  <Import Project="..\Comidat.Embed\Comidat.Embed.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>$(SolutionDir)\packages\ConfuserEx.Final.1.0.0\tools\Confuser.CLI.exe  $(TargetDir)$(TargetFileName) -o $(TargetDir)\Confused</PostBuildEvent>
