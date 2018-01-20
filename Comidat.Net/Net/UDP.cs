@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using Comidat.Diagnostics;
 using Comidat.Net.EventArgs;
 using Comidat.Runtime;
-
+#pragma warning disable 414
+#pragma warning disable 67
 namespace Comidat.Net
 {
     /// <summary>

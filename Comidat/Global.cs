@@ -24,7 +24,7 @@ namespace Comidat
         public static readonly ConcurrentDictionary<MacAddress, TBLReader> Readers =
             new ConcurrentDictionary<MacAddress, TBLReader>();
 
-        public static readonly TBLTag[] tags = Database.TBLTags.ToArray();
+        public static readonly TBLTag[] Tags = Database.TBLTags.ToArray();
 
         public static readonly double[] Distances = new double[101];
         //private static readonly ConcurrentDictionary<MacAddress, ConcurrentQueue<ITag>> TBLTags = new ConcurrentDictionary<MacAddress, ConcurrentQueue<ITag>>();
@@ -274,6 +274,7 @@ namespace Comidat
                 }
                 catch (Exception)
                 {
+                    // ignored
                 }
         }
 
@@ -333,6 +334,7 @@ namespace Comidat
                     Logger.Exception(exception);
                 }
             }
+            // ReSharper disable once FunctionNeverReturns
         }
     }
 }

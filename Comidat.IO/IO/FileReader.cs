@@ -10,7 +10,7 @@ namespace Comidat.IO
     /// <summary>
     ///     file reader for localization file
     /// </summary>
-    public class FileReader : IEnumerable<FileReaderLine>, IDisposable
+    public sealed class FileReader : IEnumerable<FileReaderLine>, IDisposable
     {
         /// <summary>
         ///     file path
@@ -25,7 +25,7 @@ namespace Comidat.IO
         /// <summary>
         ///     stream reader
         /// </summary>
-        private readonly StreamReader _streamReader;
+        private StreamReader _streamReader;
 
         /// <summary>
         ///     Read from stream
@@ -53,17 +53,33 @@ namespace Comidat.IO
             _streamReader = new StreamReader(filePath, Encoding.UTF8);
         }
 
-        /// <summary>
-        ///     Current Line of reading file
-        /// </summary>
+#pragma warning disable CS0628 // New protected member declared in sealed class
+                              /// <summary>
+                              ///     Current Line of reading file
+                              /// </summary>
         public int CurrentLine { get; protected set; }
+#pragma warning restore CS0628 // New protected member declared in sealed class
 
-        /// <summary>
-        ///     Dispose file memory
-        /// </summary>
+        /// <inheritdoc />
         public void Dispose()
         {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        
+        ~FileReader()
+        {
+            Dispose(false);
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (!disposing) return;
+            // free managed resources  
+            if (_streamReader == null) return;
             _streamReader.Close();
+            _streamReader.Dispose();
+            _streamReader = null;
         }
 
         /// <summary>
@@ -158,6 +174,7 @@ namespace Comidat.IO
         /// <summary>
         ///     Full path to the file the value was read from.
         /// </summary>
+        // ReSharper disable once UnusedAutoPropertyAccessor.Global
         public string File { get; }
     }
 }

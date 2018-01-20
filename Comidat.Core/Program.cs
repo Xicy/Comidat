@@ -126,7 +126,7 @@ namespace Comidat
                     var z = tf.r.rd_pos_z + (tl.r.rd_pos_z - tf.r.rd_pos_z) * (r1 / totalStep);
                     Logger.Debug("Tag: {0}\t \t X: {1}\tY: {2}\tZ: {3}", tf.a.MacAddress, x, y, z);
 
-                    var tagid = Global.tags.First(t => t.TagMacAddress == tf.a.MacAddress.GetLong().ToString()).Id;
+                    var tagid = Global.Tags.First(t => t.TagMacAddress == tf.a.MacAddress.GetLong().ToString()).Id;
                     Global.Database.TBLPositions.Add(new TBLPosition
                     {
                         d_XPosition = (int)x,

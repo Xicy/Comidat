@@ -26,6 +26,7 @@ namespace Comidat.Diagnostics
     /// </summary>
     public static class Logger
     {
+        private static readonly object SyncRoot = new object();
         private static string _logFile;
 
         /// <summary>
@@ -54,7 +55,7 @@ namespace Comidat.Diagnostics
                     var pathToFile = Path.GetDirectoryName(value);
 
                     if (!Directory.Exists(pathToFile))
-                        Directory.CreateDirectory(pathToFile);
+                        Directory.CreateDirectory(pathToFile ?? throw new ArgumentNullException());
 
                     if (File.Exists(value))
                     {
@@ -193,7 +194,7 @@ namespace Comidat.Diagnostics
 
         private static void Write(LogLevel level, bool toFile, string format, params object[] args)
         {
-            lock (Console.Out)
+            lock (SyncRoot)
             {
                 if (!Helper.HasFlag((byte) Hide, (byte) level))
                 {
@@ -223,12 +224,12 @@ namespace Comidat.Diagnostics
                     }
 
                     if (level != LogLevel.None)
-                        Console.Write("[{0}]", Localization.Get(GetLocalization(level)));
+                        Console.Write(@"[{0}]", Localization.Get(GetLocalization(level)));
 
                     Console.ForegroundColor = ConsoleColor.Gray;
 
                     if (level != LogLevel.None)
-                        Console.Write(" - ");
+                        Console.Write(@" - ");
 
                     Console.Write(format, args);
                 }

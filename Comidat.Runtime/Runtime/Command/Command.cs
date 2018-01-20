@@ -44,9 +44,7 @@ namespace Comidat.Runtime.Command
         protected Command(string name, string usage, string description, TFunc func)
         {
             if (!typeof(TFunc).IsSubclassOf(typeof(Delegate)))
-                throw new InvalidOperationException(Localization.Get(
-                    string.Format("Comidat.Util.Command.Command.Constructor.InvalidOperationException",
-                        typeof(TFunc).Name)));
+                throw new InvalidOperationException(string.Format(Localization.Get("Comidat.Util.Command.Command.Constructor.InvalidOperationException"), typeof(TFunc).Name));
 
             Name = name;
             Usage = usage;
