@@ -16,7 +16,7 @@ using Comidat.Runtime.Command;
 
 namespace Comidat
 {
-    internal static class Program
+    public static class Program
     {
         private const int ProgressStep = 7;
 
