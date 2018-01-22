@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Comidat Client")]
+[assembly: AssemblyTitle("Comidat Reporter")]
 [assembly: AssemblyDescription("Personal Trace Report Program")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Xicy")]
-[assembly: AssemblyProduct("Comidat.Windows.Client")]
+[assembly: AssemblyProduct("Comidat.Windows.Reporter")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

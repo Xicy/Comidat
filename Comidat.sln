@@ -27,7 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Comidat.Core", "Comidat.Cor
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solutions", "Solutions", "{3D8D2A6E-F1E4-4A7A-8D4E-6F63D1BD6351}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comidat.Windows.Client", "Comidat.Windows.Client\Comidat.Windows.Client.csproj", "{3FF7256A-F70D-4DFC-97CB-AAAE706C695C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comidat.Windows.Reporter", "Comidat.Windows.Reporter\Comidat.Windows.Reporter.csproj", "{3FF7256A-F70D-4DFC-97CB-AAAE706C695C}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
