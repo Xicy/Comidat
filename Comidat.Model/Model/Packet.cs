@@ -37,9 +37,9 @@ namespace Comidat.Model
                     _clientPackets.Add(new Tag(new MacAddress(ulong.Parse(sdata[i + 1])), new MacAddress(sdata[i + 2]),
                         byte.Parse(sdata[i]), ""));
                 }
-                catch (Exception e) when (e is ArgumentOutOfRangeException || e is ArgumentException)
+                catch (Exception e) when (e is ArgumentOutOfRangeException || e is ArgumentException || e is IndexOutOfRangeException || e is FormatException)
                 {
-                    Logger.Exception(e);
+                    Logger.Exception(e,data);
                 }
         }
 

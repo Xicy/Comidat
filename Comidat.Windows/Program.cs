@@ -101,9 +101,9 @@ namespace Comidat
                         tf.r.d_rd_pos_y, tf.r.rd_pos_z);
                     Global.Database.TBLPositions.Add(new TBLPosition
                     {
-                        d_XPosition = (int)tf.r.d_rd_pos_x,
-                        d_yPosition = (int)tf.r.d_rd_pos_y,
-                        TagId = (int)tf.a.ReaderMacAddress.GetLong(),
+                        d_XPosition = (int) tf.r.d_rd_pos_x,
+                        d_yPosition = (int) tf.r.d_rd_pos_y,
+                        TagId = (int) tf.a.ReaderMacAddress.GetLong(),
                         MapId = tf.r.MapId
                     });
                 }
@@ -122,13 +122,18 @@ namespace Comidat
                     var tagid = Global.Tags.First(t => t.TagMacAddress == tf.a.MacAddress.GetLong().ToString()).Id;
                     Global.Database.TBLPositions.Add(new TBLPosition
                     {
-                        d_XPosition = (int)x,
-                        d_yPosition = (int)y,
+                        d_XPosition = (int) x,
+                        d_yPosition = (int) y,
                         TagId = tagid,
                         MapId = tf.r.MapId
                     });
                 }
             }
+            catch (Exception ex)
+            {
+                Logger.Exception(ex, Encoding.UTF8.GetString(e.Message));
+            }
+            /*
             catch (InvalidOperationException ex)
             {
                 Logger.Exception(ex);
@@ -136,7 +141,7 @@ namespace Comidat
             catch (ArgumentOutOfRangeException ex)
             {
                 Logger.Exception(ex);
-            }
+            }*/
 #if DEBUG
             string debug =
  String.Format(Localization.Get("Comidat.Program.ServerOnMessageReceived.Debug.0"), e.Client, packet[0].MacAddress, 2412);
