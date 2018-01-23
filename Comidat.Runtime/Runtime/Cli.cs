@@ -37,8 +37,10 @@ namespace Comidat.Runtime
             Console.ForegroundColor = _color;
             var lines = _header.Split('\n');
             var max = lines.Max(l => l.Length);
-            Console.WindowWidth = Math.Max(max + 1, Console.WindowWidth);
+            //TODO:Linux Control Close for linux
+            //Console.WindowWidth = Math.Max(max + 1, Console.WindowWidth);
             var left = new StringBuilder().Append(' ', (Console.WindowWidth - max - 1) / 2).ToString();
+            //var left = new StringBuilder().Append(' ', (max + 1) / 2).ToString();
             foreach (var line in lines)
                 Console.WriteLine(left + line);
 
@@ -53,8 +55,11 @@ namespace Comidat.Runtime
         /// </summary>
         public static void LoadingTitle()
         {
+            //TODO:Linux Control Close for linux
+            /*
             if (!Console.Title.StartsWith("* "))
                 Console.Title = @"* " + Console.Title;
+            */
         }
 
         /// <summary>
@@ -62,7 +67,10 @@ namespace Comidat.Runtime
         /// </summary>
         public static void RunningTitle()
         {
+            //TODO:Linux Control Close for linux
+            /*
             Console.Title = Console.Title.TrimStart('*', ' ');
+            */
         }
 
         /// <summary>

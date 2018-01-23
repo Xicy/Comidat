@@ -72,7 +72,7 @@ namespace Comidat
 
             Cli.RunningTitle();
 
-            //Test(server).Wait(0);
+            //Test().Wait(0);
 
             Global.SaveDataBaseAync().Wait(0);
 

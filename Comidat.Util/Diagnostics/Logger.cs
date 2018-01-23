@@ -137,7 +137,8 @@ namespace Comidat.Diagnostics
 
         public static void Progress(int current, int max)
         {
-            var maxW = Console.WindowWidth - 50;
+            //TODO:Linux Control Close for linux
+            var maxW = Console.WindowWidth - 50;//Console.WindowWidth - 50;
             var donePerc = 100f / max * current;
             var done = (int) Math.Ceiling((float) maxW / max * current);
 

@@ -15,6 +15,7 @@
     <AssemblyVersion>1.0.0.1</AssemblyVersion>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <ServerGarbageCollection>true</ServerGarbageCollection>
   </PropertyGroup>
 
   <Import Project="..\Comidat\Comidat.projitems" Label="Shared" />
@@ -52,6 +53,7 @@
     </ItemGroup>
     <Move SourceFiles="@(FilesToMove)" DestinationFolder="$(TargetDir)" />
     <RemoveDir Directories="$(TargetDir)\Confused" />
+    <Delete Files="$(TargetDir)\obfuscar.xml" />
   </Target>
 
 </Project>

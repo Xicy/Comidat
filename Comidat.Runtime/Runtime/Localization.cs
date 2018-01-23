@@ -41,7 +41,8 @@ namespace Comidat.Runtime
             //load from dll
             LoadByEmbededAssembly(Assembly.GetEntryAssembly());
             //load from directory on OS
-            LoadByDirectory(Environment.CurrentDirectory, "*." + DefaultFileExtention);
+            //TODO:Linux Control Close for linux
+            //LoadByDirectory(Environment.CurrentDirectory, "*." + DefaultFileExtention);
             _isLoadDefault = true;
         }
 
