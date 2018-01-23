@@ -2,16 +2,18 @@
 
 const String macId = WiFi.macAddress();
 const int tagId = ESP.getChipId() & 0xFF;
-const char* wifiSSID = "AKKAYA";
+const char* wifiSSID = "AKKAYA-Windows";
 const char* wifiPassword = "Akkaya1996";
-IPAddress serverIP(192, 168, 1, 21);
+IPAddress serverIP(192, 168, 137, 1);
 uint16_t  serverPort = 5757;
 
-IPAddress ip(192, 168, 1, tagId);
+IPAddress ip(192, 168, 137, tagId);
 IPAddress gateway(192, 168, 1, 1);
 IPAddress subnet(255, 255, 255, 0);
 IPAddress dns(192, 168, 1, 1);
 
+String gon = "";
+int networksCount = 0;
 unsigned long now = 0;
 //unsigned long lastMsg = 0;
 unsigned long lastConnect = 0;
@@ -38,7 +40,7 @@ void loop() {
 }
 
 void WifiConnect() {
-	if (WiFi.status() == WL_CONNECTED) return;
+	if (WiFi.isConnected()) return;
 	Serial.print("Wifi Baglaniyor");
 	while ((wifiMulti.run() != WL_CONNECTED)) {
 		Serial.print(".");
@@ -64,9 +66,9 @@ void ServerConnect() {
 void SendData() {
 	if (client.status() != ESTABLISHED) return;
 	//if (now - lastMsg < 500) return; lastMsg = now;
-	int n = WiFi.scanNetworks();
-	String gon = "";
-	for (int i = 0; i < n; ++i)
+	networksCount = WiFi.scanNetworks(false, true);
+	gon = "";
+	for (int i = 0; i < networksCount; ++i)
 	{
 		gon += ";";
 		gon += WiFi.RSSI(i);
@@ -74,6 +76,11 @@ void SendData() {
 		gon += tagId;//macId;
 		gon += ";";
 		gon += WiFi.BSSIDstr(i);
+		//Avoid overflow buffer size
+		if (i == 20) {
+			client.print(gon);
+			gon = "";
+		}
 	}
 	client.print(gon);
 }
