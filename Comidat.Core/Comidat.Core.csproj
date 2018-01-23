@@ -14,6 +14,7 @@
     <Description>Personal Trace</Description>
     <AssemblyVersion>1.0.0.1</AssemblyVersion>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
   <Import Project="..\Comidat\Comidat.projitems" Label="Shared" />
@@ -44,7 +45,7 @@
     </None>
   </ItemGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(Configuration)'=='Release'">
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec WorkingDirectory="$(TargetDir)" Command="$(Obfuscar) obfuscar.xml" />
     <ItemGroup>
       <FilesToMove Include="$(TargetDir)\Confused\*" />

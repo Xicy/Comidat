@@ -11,6 +11,6 @@
   <Var name="KeepPublicApi" value="false" />
   <Var name="KeyFile" value="..\..\..\Comidat.snk" />
   <Module file="$(InPath)\Comidat.dll"/>
-  <AssemblySearchPath path="C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.netcore.app\2.0.0\ref\netcoreapp2.0" />
-  <AssemblySearchPath path="C:\Users\umuta\Desktop\Comidat\Comidat.Core\bin\Release\PublishOutput" />
+  <!--<AssemblySearchPath path="C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.netcore.app\2.0.0\ref\netcoreapp2.0" />
+  <AssemblySearchPath path="C:\Users\umuta\Desktop\Comidat\Comidat.Core\bin\Release\PublishOutput" />-->
 </Obfuscator>
