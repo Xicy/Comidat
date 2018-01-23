@@ -20,11 +20,11 @@ namespace Comidat.Windows.Client
             _baseFont = BaseFont.CreateFont(Environment.GetEnvironmentVariable("windir") + @"\fonts\Arial.TTF", BaseFont.IDENTITY_H, true);
 
             dateTimePickerFirst.MinDate = _database.TBLPositions.Min(p => p.RecordDateTime);
-            dateTimePickerFirst.MaxDate = _database.TBLPositions.Min(p => p.RecordDateTime);
+            dateTimePickerFirst.MaxDate = _database.TBLPositions.Max(p => p.RecordDateTime);
             dateTimePickerFirst.Value = DateTime.Now.Date == dateTimePickerFirst.MinDate ? DateTime.Today : dateTimePickerFirst.MinDate;
 
             dateTimePickerLast.MinDate = _database.TBLPositions.Min(p => p.RecordDateTime);
-            dateTimePickerLast.MaxDate = _database.TBLPositions.Min(p => p.RecordDateTime);
+            dateTimePickerLast.MaxDate = _database.TBLPositions.Max(p => p.RecordDateTime);
             dateTimePickerLast.Value = DateTime.Now.Date == dateTimePickerLast.MaxDate ? DateTime.Today : dateTimePickerLast.MaxDate;
         }
 
@@ -69,12 +69,14 @@ namespace Comidat.Windows.Client
                 }
 
                 document.Add(table);
-                //document.Close();
-                //writer.Close();
-                //ms.Close();
-
+                document.Close();
+                writer.Close();
                 File.WriteAllBytes(sfd.FileName, ms.GetBuffer());
+                ms.Close();
             }
+            GC.Collect(0,GCCollectionMode.Forced);
+            GC.WaitForFullGCComplete();
+            
             MessageBox.Show(@"Dışarı Aktarma Başarılı Birşekilde Tamamlandı.", @"Dışarı Aktarma", MessageBoxButtons.OK);
         }
     }
