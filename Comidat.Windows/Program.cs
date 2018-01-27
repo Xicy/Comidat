@@ -99,11 +99,12 @@ namespace Comidat
                     var tf = readers[0];
                     Logger.Debug("Tag: {0}\t \t X: {1}\tY: {2}\tZ: {3}", tf.a.MacAddress, tf.r.d_rd_pos_x,
                         tf.r.d_rd_pos_y, tf.r.rd_pos_z);
+                    var tagid = Global.Tags.First(t => t.TagMacAddress == tf.a.MacAddress.GetLong().ToString()).Id;
                     Global.Database.TBLPositions.Add(new TBLPosition
                     {
                         d_XPosition = (int) tf.r.d_rd_pos_x,
                         d_yPosition = (int) tf.r.d_rd_pos_y,
-                        TagId = (int) tf.a.ReaderMacAddress.GetLong(),
+                        TagId = tagid,
                         MapId = tf.r.MapId
                     });
                 }
