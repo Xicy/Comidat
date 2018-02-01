@@ -4,11 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Comidat.Data;
-using Comidat.Windows.Reporter;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
-namespace Comidat.Windows.Client
+namespace Comidat
 {
     public partial class Form1 : Form
     {

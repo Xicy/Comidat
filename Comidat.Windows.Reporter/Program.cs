@@ -3,7 +3,7 @@ using System.IO;
 using System.Windows.Forms;
 using Comidat.Diagnostics;
 
-namespace Comidat.Windows.Client
+namespace Comidat
 {
     internal static class Program
     {

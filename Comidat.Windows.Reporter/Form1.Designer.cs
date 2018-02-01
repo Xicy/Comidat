@@ -1,4 +1,4 @@
-﻿namespace Comidat.Windows.Client
+﻿namespace Comidat
 {
     partial class Form1
     {
