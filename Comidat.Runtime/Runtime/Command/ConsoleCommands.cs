@@ -32,11 +32,11 @@ namespace Comidat.Runtime.Command
             Add(Localization.Get("Comidat.Util.Command.ConsoleCommands.Constructor.Status"),
                 Localization.Get("Comidat.Util.Command.ConsoleCommands.Constructor.Description.Status"),
                 HandleStatus);
-#if DEBUG
-//open and close debug on console
+            //#if DEBUG
+            //open and close debug on console
             Add(Localization.Get("Comidat.Util.Command.ConsoleCommands.Constructor.Debug"), Localization.Get("Comidat.Util.Command.ConsoleCommands.Constructor.Description.Debug"),
                 HandleDebug);
-#endif
+            //#endif
         }
 
         /// <summary>
@@ -105,13 +105,13 @@ namespace Comidat.Runtime.Command
             }
         }
 
-#if DEBUG
-/// <summary>
-///     simple command debug toggeler
-/// </summary>
-/// <param name="command"></param>
-/// <param name="args"></param>
-/// <returns></returns>
+        //#if DEBUG
+        /// <summary>
+        ///     simple command debug toggeler
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="args"></param>
+        /// <returns></returns>
         protected CommandResult HandleDebug(string command, IList<string> args)
         {
             //change hide attirbute of logger
@@ -119,7 +119,7 @@ namespace Comidat.Runtime.Command
             Logger.Info(Localization.Get("Comidat.Util.Command.ConsoleCommands.HandleDebug.Info"), (Logger.Hide & LogLevel.Debug) == 0 ? Localization.Get("True") : Localization.Get("False"));
             return CommandResult.Okay;
         }
-#endif
+        //#endif
 
         /// <summary>
         ///     simple command clean scren
