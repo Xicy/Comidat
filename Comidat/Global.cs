@@ -324,7 +324,7 @@ namespace Comidat
         {
             while (true)
             {
-                await Task.Delay(TimeSpan.FromSeconds(30));
+                await Task.Delay(TimeSpan.FromSeconds(5));
                 try
                 {
                     Database.SaveChangesAsync().Wait(0);
