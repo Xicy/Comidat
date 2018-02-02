@@ -219,40 +219,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Plugins\DevIL\IlInterop.cs" />
-    <Compile Include="Assets\Plugins\DevIL\IlLoader.cs" />
-    <Compile Include="Assets\Plugins\iTween\iTween.cs" />
-    <Compile Include="Assets\Plugins\TriLib\AiComponent.cs" />
-    <Compile Include="Assets\Plugins\TriLib\AiPrimitiveType.cs" />
-    <Compile Include="Assets\Plugins\TriLib\AiUVTransform.cs" />
-    <Compile Include="Assets\Plugins\TriLib\AnimationClipCreatedHandle.cs" />
-    <Compile Include="Assets\Plugins\TriLib\AssetAdvancedConfig.cs" />
-    <Compile Include="Assets\Plugins\TriLib\AssetAdvancedConfigType.cs" />
-    <Compile Include="Assets\Plugins\TriLib\AssetAdvancedPropertyClassNames.cs" />
-    <Compile Include="Assets\Plugins\TriLib\AssetAdvancedPropertyMetadata.cs" />
-    <Compile Include="Assets\Plugins\TriLib\AssetLoader.cs" />
-    <Compile Include="Assets\Plugins\TriLib\AssetLoaderOptions.cs" />
-    <Compile Include="Assets\Plugins\TriLib\AssimpInterop.cs" />
-    <Compile Include="Assets\Plugins\TriLib\AssimpPostProcessSteps.cs" />
-    <Compile Include="Assets\Plugins\TriLib\AssimpProcessPreset.cs" />
-    <Compile Include="Assets\Plugins\TriLib\CameraExtensions.cs" />
-    <Compile Include="Assets\Plugins\TriLib\Extras\AvatarLoader.cs" />
-    <Compile Include="Assets\Plugins\TriLib\Extras\AvatarLoaderSample.cs" />
-    <Compile Include="Assets\Plugins\TriLib\Extras\BoneRelationship.cs" />
-    <Compile Include="Assets\Plugins\TriLib\Extras\BoneRelationshipList.cs" />
-    <Compile Include="Assets\Plugins\TriLib\FileUtils.cs" />
-    <Compile Include="Assets\Plugins\TriLib\MaterialCreatedHandle.cs" />
-    <Compile Include="Assets\Plugins\TriLib\MaterialData.cs" />
-    <Compile Include="Assets\Plugins\TriLib\MatrixExtensions.cs" />
-    <Compile Include="Assets\Plugins\TriLib\MeshCreatedHandle.cs" />
-    <Compile Include="Assets\Plugins\TriLib\MeshData.cs" />
-    <Compile Include="Assets\Plugins\TriLib\NodeData.cs" />
-    <Compile Include="Assets\Plugins\TriLib\ObjectLoadedHandle.cs" />
-    <Compile Include="Assets\Plugins\TriLib\StringUtils.cs" />
-    <Compile Include="Assets\Plugins\TriLib\Texture2DUtils.cs" />
-    <Compile Include="Assets\Plugins\TriLib\TextureCompression.cs" />
-    <Compile Include="Assets\Plugins\TriLib\TextureLoadHandle.cs" />
-    <Compile Include="Assets\Plugins\TriLib\TransformExtensions.cs" />
+    <Compile Include="Assets\Plugins\Pixelplacement\iTween\iTween.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
