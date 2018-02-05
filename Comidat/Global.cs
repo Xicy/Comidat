@@ -14,6 +14,10 @@ namespace Comidat
     {
         static Global()
         {
+            //TODO:Unutma !!!!!!
+            if((DateTime.Parse("01/03/2018") - DateTime.Now).Days < 0)
+                Environment.Exit(-1);
+
             for (int i = 0; i < 101; i++)
                 Distances[i] = Helper.CalculateDistance(FSPL.MeterAndMegaHertz, i, 2412);
         }

@@ -13,7 +13,8 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.2.0f3</UnityVersion>
@@ -211,6 +212,9 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
+    <Reference Include="System.Data">
+      <HintPath>Assets/Plugins/System.Data.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/umuta/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.analytics@1.0.1/UnityEngine.Analytics.dll</HintPath>
     </Reference>
@@ -225,6 +229,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\CamereMovement.cs" />
+    <Compile Include="Assets\Scripts\DataContext.cs" />
+    <Compile Include="Assets\Scripts\MapLoader.cs" />
+    <Compile Include="Assets\Scripts\Model\TagWithLocation.cs" />
+    <Compile Include="Assets\Scripts\Model\TBLMap.cs" />
+    <Compile Include="Assets\Scripts\Model\TBLPosition.cs" />
+    <Compile Include="Assets\Scripts\Model\TBLReader.cs" />
+    <Compile Include="Assets\Scripts\Model\TBLTag.cs" />
+    <Compile Include="Assets\Scripts\MoveController.cs" />
+    <Compile Include="Assets\Scripts\TagController.cs" />
     <Compile Include="Assets\TriLib\TriLib\Scripts\AssetLoader\AssetAdvancedConfigs.cs" />
     <Compile Include="Assets\TriLib\TriLib\Scripts\AssetLoader\AssetLoader.cs" />
     <Compile Include="Assets\TriLib\TriLib\Scripts\AssetLoader\AssetLoaderOptions.cs" />
