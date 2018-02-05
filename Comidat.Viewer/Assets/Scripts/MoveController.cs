@@ -4,8 +4,8 @@ public class MoveController : MonoBehaviour
 {
     public bool IsActive
     {
-        set { GetComponentInChildren<SkinnedMeshRenderer>().enabled = value; }
-        get { return GetComponentInChildren<SkinnedMeshRenderer>().enabled; }
+        set { gameObject.SetActive(value); }
+        get { return gameObject.activeSelf; }
     }
 
     public bool Moving = false;
