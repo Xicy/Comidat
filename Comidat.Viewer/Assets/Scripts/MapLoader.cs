@@ -1,9 +1,11 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 using Boo.Lang;
 using TriLib;
-using UnityEditor;
 using UnityEngine;
+
 
 public class MapLoader : MonoBehaviour
 {
@@ -15,6 +17,8 @@ public class MapLoader : MonoBehaviour
     }
 
     // Use this for initialization
+
+
     void Start()
     {
         ImportMap();
@@ -28,7 +32,7 @@ public class MapLoader : MonoBehaviour
 
     public bool ImportMap()
     {
-        var mapFilePath = Path.Combine(Environment.CurrentDirectory, "map.fbx");
+        var mapFilePath = "map.fbx";
         if (File.Exists(mapFilePath))
         {
             AssetLoader assetLoader = new AssetLoader();
@@ -51,43 +55,65 @@ public class MapLoader : MonoBehaviour
 
     public void SetMap()
     {
-        Material material = AssetDatabase.LoadAssetAtPath<Material>("Assets/Materials/Route.mat");
-        List<Vector3> rotList = new List<Vector3>();
+        Material material = Resources.Load<Material>("Route");
+
+        int MapSize = 0;
+
+        //Map calcuter
         foreach (Transform child in Map.transform.GetChild(0))
         {
-            if (child.name.StartsWith("map"))
-            {
-                child.transform.GetComponentInChildren<MeshRenderer>().material = material;
-            }
-            else if (child.name.StartsWith("cam"))
-            {
-                Destroy(child.gameObject);
-            }
-            else if (child.name.StartsWith("rot"))
-            {
-                rotList.Add(child.transform.position);
-                //Destroy(child.gameObject);
-            }
-            else if (child.name.StartsWith("rdr"))
-            {
-                Destroy(child.gameObject);
-            }
+            if (!child.name.StartsWith("map")) continue;
+            MapSize++;
+            child.transform.GetComponentInChildren<MeshRenderer>().material = material;
         }
-        Camera.main.FitToBounds(Map.transform,1);
 
-
-        Color red = Color.red;
-        LineRenderer lineRenderer = gameObject.AddComponent<LineRenderer>();
-        lineRenderer.SetColors(red, red);
-        lineRenderer.SetWidth(0.2F, 0.2F);
-
-        //Change how mant points based on the mount of positions is the List
-        lineRenderer.SetVertexCount(rotList.Count);
-
-        for (int i = 0; i < rotList.Count; i++)
+        Route[][] RoutesByFloor = new Route[MapSize][];
+        string[] args;
+        Route[] route;
+        //Route calcuter
+        foreach (Transform child in Map.transform.GetChild(0))
         {
-            //Change the postion of the lines
-            lineRenderer.SetPosition(i, rotList[i]);
+            if (child.name.StartsWith("rdr"))
+            {
+                Destroy(child.gameObject);
+                continue;
+            }
+            if (!child.name.StartsWith("rot")) continue;
+            args = child.name.Split('_');
+            route = RoutesByFloor[int.Parse(args[2]) - 1] = RoutesByFloor[int.Parse(args[2]) - 1] ?? new Route[1000];
+
+            if (args[1] == args[4])
+                if (route.ElementAt(int.Parse(args[1])) == null)
+                    route[int.Parse(args[1])] = new Route(child.localPosition);
+                else
+                    route[int.Parse(args[1])].position = child.localPosition;
+            else
+            {
+               
+                if (route.ElementAt(int.Parse(args[1])) == null)
+                    route[int.Parse(args[1])] = new Route(child.localPosition);
+                route[int.Parse(args[1])].prev.Add(int.Parse(args[4]));
+
+                if (route.ElementAt(int.Parse(args[4])) == null)
+                    route[int.Parse(args[4])] = new Route(Vector3.zero);
+                route[int.Parse(args[4])].next.Add(int.Parse(args[1]));
+
+            }
+
+            Destroy(child.gameObject);
         }
+
+        FitToBounds(Camera.main, Map.transform, 1.2f);
     }
+
+    public static void FitToBounds(Camera camera, Transform transform, float distance)
+    {
+        var bounds = transform.EncapsulateBounds();
+        var boundRadius = bounds.extents.magnitude;
+        var finalDistnace = (boundRadius / (2.0f * Mathf.Tan(0.5f * camera.fieldOfView * Mathf.Deg2Rad))) * distance;
+        camera.farClipPlane = finalDistnace * 2f;
+        camera.transform.position = new Vector3(bounds.center.x, bounds.center.y + 100, bounds.center.z + finalDistnace);
+        camera.transform.LookAt(transform.position + bounds.extents);
+    }
+
 }
