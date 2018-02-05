@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Reflection;
 using Comidat.Data.Model;
 using UnityEngine;
+
 
 public class DataContext : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class DataContext : MonoBehaviour
 
     private string _conString = @"Server=sql.lc;Database=ComidatOld;User ID=SA;Password=Umut1996;";
     private SqlConnection _dbCon;
+
 
     void Awake()
     {
@@ -52,19 +55,22 @@ public class DataContext : MonoBehaviour
 
     public IEnumerable<TagWithLocation> GetTagsLocation()
     {
-        var data = Query("SELECT c.TagFirstName, c.TagDescription, x.XPosition, x.YPosition, x.ZPosition, x.TagId, x.MapId, x.RecordDateTime  FROM TBLTags c WITH(NOLOCK) OUTER APPLY(SELECT TOP 1 * FROM TBLPositions r WITH(NOLOCK) WHERE r.TagId = c.Id ORDER BY r.RecordDateTime DESC) x WHERE x.XPosition IS NOT NULL");
+        var data = Query("SELECT c.TagFirstName, x.XPosition, x.YPosition, x.ZPosition, x.TagId, x.MapId, x.RecordDateTime, c.TagDescription, c.TagFullName, c.TagLastName, c.TagTCNo, c.TagMobilTelephone FROM TBLTags c WITH(NOLOCK) OUTER APPLY(SELECT TOP 1 * FROM TBLPositions r WITH(NOLOCK) WHERE r.TagId = c.Id ORDER BY r.RecordDateTime DESC) x WHERE x.XPosition IS NOT NULL");
         while (data.Read())
         {
             yield return new TagWithLocation
             {
-                TagFirstName = data.GetString(0),
-                TagDescription = data.GetString(1),
-                XPosition = data.GetInt32(2),
-                YPosition = data.GetInt32(3),
-                ZPosition = data.GetInt32(4),
-                TagId = data.GetInt64(5),
-                MapId = data.GetInt32(6),
-                RecordDateTime = data.GetDateTime(7)
+                tag = new TBLTag
+                {
+                    TagDescription = data.IsDBNull(7) ? "" : data.GetString(7),
+                    TagFirstName = data.IsDBNull(0) ? "" : data.GetString(0),
+                    TagFullName = data.IsDBNull(8) ? "" : data.GetString(8),
+                    TagLastName = data.IsDBNull(9) ? "" : data.GetString(9),
+                    TagTCNo = data.IsDBNull(10) ? "" : data.GetString(10),
+                    Id = data.GetInt64(4),
+                    TagMobilTelephone = data.IsDBNull(11) ? "" : data.GetString(11)
+                },
+                pos = new TBLPosition { XPosition = data.GetInt32(1), YPosition = data.GetInt32(2), ZPosition = data.GetInt32(3), TagId = data.GetInt64(4), MapId = data.GetInt32(5), RecordDateTime = data.GetDateTime(6) }
             };
         }
         _dbCon.Close();
