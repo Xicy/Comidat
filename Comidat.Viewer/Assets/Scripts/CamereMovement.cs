@@ -1,6 +1,6 @@
 ﻿using System.Collections;
-using TriLib;
 using UnityEngine;
+
 
 public class CamereMovement : MonoBehaviour
 {
@@ -8,10 +8,10 @@ public class CamereMovement : MonoBehaviour
     private static Vector3 _rotationCameraHome;
     public float Speed = 100;
     public float Sensitivity = 100;
-    private float yaw = 0.0f;
-    private float pitch = 0.0f;
-
-    private void Awake()
+    private float yaw;
+    private float pitch;
+    
+    void Start()
     {
         _positionCameraHome = transform.position;
         _rotationCameraHome = transform.eulerAngles;
@@ -21,23 +21,11 @@ public class CamereMovement : MonoBehaviour
     {
         if (Input.GetMouseButton(1))
         {
-            yaw += Time.smoothDeltaTime * Sensitivity * Input.GetAxis("Mouse X");
-            pitch -= Time.smoothDeltaTime * Sensitivity * Input.GetAxis("Mouse Y");
+            yaw = transform.eulerAngles.y + Time.smoothDeltaTime * Sensitivity * Input.GetAxis("Mouse X");
+            pitch = transform.eulerAngles.x - Time.smoothDeltaTime * Sensitivity * Input.GetAxis("Mouse Y");
             transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
 
-            Vector3 target = Vector3.zero;
-
-            if (Input.GetKey(KeyCode.D))
-                target += Vector3.right;
-
-            if (Input.GetKey(KeyCode.A))
-                target += Vector3.left;
-
-            if (Input.GetKey(KeyCode.W))
-                target += Vector3.forward;
-
-            if (Input.GetKey(KeyCode.S))
-                target += Vector3.back;
+            Vector3 target = Vector3.right * Input.GetAxis("Horizontal") + Vector3.forward * Input.GetAxis("Vertical");
 
             if (Input.GetKey(KeyCode.E))
                 target += Vector3.up;
