@@ -97,13 +97,14 @@ namespace Comidat
                 if (readers.Length == 1)
                 {
                     var tf = readers[0];
-                    Logger.Debug("Tag: {0}\t \t X: {1}\tY: {2}\tZ: {3}", tf.a.MacAddress, tf.r.d_rd_pos_x,
-                        tf.r.d_rd_pos_y, tf.r.rd_pos_z);
+                    Logger.Debug("Tag: {0}\t \t X: {1}\tY: {2}\tZ: {3}", tf.a.MacAddress, tf.r.rd_pos_x,
+                        tf.r.rd_pos_y, tf.r.rd_pos_z);
                     var tagid = Global.Tags.First(t => t.TagMacAddress == tf.a.MacAddress.GetLong().ToString()).Id;
                     Global.Database.TBLPositions.Add(new TBLPosition
                     {
-                        d_XPosition = (int) tf.r.d_rd_pos_x,
-                        d_yPosition = (int) tf.r.d_rd_pos_y,
+                        XPosition = (int)tf.r.rd_pos_x,
+                        YPosition = (int)tf.r.rd_pos_y,
+                        ZPosition = (int)tf.r.rd_pos_z,
                         TagId = tagid,
                         MapId = tf.r.MapId
                     });
@@ -115,16 +116,17 @@ namespace Comidat
                     var r1 = Global.Distances[tf.a.RSSI];
                     var r2 = Global.Distances[tf.a.RSSI];
                     var totalStep = r1 + r2;
-                    var x = tf.r.d_rd_pos_x + (tl.r.d_rd_pos_x - tf.r.d_rd_pos_x) * (r1 / totalStep);
-                    var y = tf.r.d_rd_pos_y + (tl.r.d_rd_pos_y - tf.r.d_rd_pos_y) * (r1 / totalStep);
+                    var x = tf.r.rd_pos_x + (tl.r.rd_pos_x - tf.r.rd_pos_x) * (r1 / totalStep);
+                    var y = tf.r.rd_pos_y + (tl.r.rd_pos_y - tf.r.rd_pos_y) * (r1 / totalStep);
                     var z = tf.r.rd_pos_z + (tl.r.rd_pos_z - tf.r.rd_pos_z) * (r1 / totalStep);
                     Logger.Debug("Tag: {0}\t \t X: {1}\tY: {2}\tZ: {3}", tf.a.MacAddress, x, y, z);
 
                     var tagid = Global.Tags.First(t => t.TagMacAddress == tf.a.MacAddress.GetLong().ToString()).Id;
                     Global.Database.TBLPositions.Add(new TBLPosition
                     {
-                        d_XPosition = (int) x,
-                        d_yPosition = (int) y,
+                        XPosition = (int)x,
+                        YPosition = (int)y,
+                        ZPosition = (int)z,
                         TagId = tagid,
                         MapId = tf.r.MapId
                     });
