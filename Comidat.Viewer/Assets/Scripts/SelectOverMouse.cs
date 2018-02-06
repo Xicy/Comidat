@@ -11,7 +11,7 @@ public class SelectOverMouse : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hitInfo;
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo))
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo, Mathf.Infinity, 1 << 8))
             {
                 TagInfo ti = hitInfo.transform.gameObject.GetComponent<TagInfo>();
                 InfoPanel.UpdateInfo(ti.info, hitInfo.transform);

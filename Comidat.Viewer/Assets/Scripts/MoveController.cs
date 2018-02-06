@@ -9,7 +9,7 @@ public class MoveController : MonoBehaviour
     }
 
     public bool Moving = false;
-    public float MSpeed = 20.0f;
+    public float MSpeed = 2.0f;
 
     public void MoveDone()
     {
@@ -20,10 +20,9 @@ public class MoveController : MonoBehaviour
 
     public void Move(Vector3 target)
     {
-        if (!IsActive || Moving || (transform.position - target).magnitude < 1) return;
+        if (!IsActive || Moving || (transform.position - target).magnitude < 3) return;
         Moving = true;
         GetComponent<Animator>().Play("Walk");
-        iTween.MoveTo(gameObject, iTween.Hash("position", target, "speed", MSpeed, "easetype", "linear", "oncompletetarget", gameObject, "oncomplete", "MoveDone"));
-        iTween.LookTo(gameObject, iTween.Hash("looktarget", target, "speed", MSpeed, "easetype", "linear"));
+        iTween.MoveTo(gameObject, iTween.Hash("position", target, "looktarget", target, "speed", MSpeed, "easetype", "linear", "oncompletetarget", gameObject, "oncomplete", "MoveDone"));
     }
 }

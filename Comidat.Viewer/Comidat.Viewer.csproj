@@ -211,19 +211,21 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
+    <Reference Include="System.Data">
+      <HintPath>Assets/Scripts/System.Data.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/umuta/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.analytics@1.0.1/UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Purchasing">
       <HintPath>C:/Users/umuta/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.purchasing@1.0.1/UnityEngine.Purchasing.dll</HintPath>
     </Reference>
-    <Reference Include="System.Data">
-      <HintPath>Assets/Scripts/System.Data.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\AssemblyInfo.cs" />
     <Compile Include="Assets\Scripts\CamereMovement.cs" />
+    <Compile Include="Assets\Scripts\ClosestPointGroup.cs" />
+    <Compile Include="Assets\Scripts\ClosestPointLineRenderer.cs" />
     <Compile Include="Assets\Scripts\DataContext.cs" />
     <Compile Include="Assets\Scripts\Helper.cs" />
     <Compile Include="Assets\Scripts\MapLoader.cs" />
@@ -233,7 +235,6 @@
     <Compile Include="Assets\Scripts\Model\TBLReader.cs" />
     <Compile Include="Assets\Scripts\Model\TBLTag.cs" />
     <Compile Include="Assets\Scripts\MoveController.cs" />
-    <Compile Include="Assets\Scripts\PathController.cs" />
     <Compile Include="Assets\Scripts\Pixelplacement\iTween\iTween.cs" />
     <Compile Include="Assets\Scripts\Route.cs" />
     <Compile Include="Assets\Scripts\SelectOverMouse.cs" />

@@ -1,8 +1,7 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Reflection;
 using Comidat.Data.Model;
 using UnityEngine;
 
@@ -11,12 +10,16 @@ public class DataContext : MonoBehaviour
 {
     public static DataContext Instance;
 
-    private string _conString = @"Server=sql.lc;Database=ComidatOld;User ID=SA;Password=Umut1996;";
+    //private string _conString = @"Server=sql.lc;Database=ComidatOld;User ID=SA;Password=Umut1996;";
+    private string _conString = @"Server=.;Database=MinePts;User ID=sa;Password=comidat;";
     private SqlConnection _dbCon;
-
 
     void Awake()
     {
+        //TODO:Unutma !!!!!!
+        if ((DateTime.Parse("01/03/2018") - DateTime.Now).Days < 0)
+            Application.Quit();
+
         if (Instance == null)
             Instance = this;
         else if (Instance != this)
