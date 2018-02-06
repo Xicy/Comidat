@@ -1,5 +1,4 @@
 ﻿using TriLib;
-using UnityEditor;
 using UnityEngine;
 
 public static class Helper
