@@ -74,8 +74,8 @@ namespace Comidat
                 //Get Table Data
                 var data = _database.TBLPositions
                     .Where(p => p.RecordDateTime.Date >= dateTimePickerFirst.Value.Date && p.RecordDateTime.Date <= dateTimePickerLast.Value.Date)
-                    .OrderBy(p => p.TagId)
-                    .ThenByDescending(p => p.RecordDateTime)
+                    //.OrderBy(p => p.TagId)
+                    .OrderBy(p => p.RecordDateTime)
                     .Join(_database.TBLMaps, p => p.MapId, m => m.Id,
                         (p, m) => new { Position = p, Map = m }) //Join Map
                     .Join(_database.TBLTags, p => p.Position.TagId, t => t.Id,
