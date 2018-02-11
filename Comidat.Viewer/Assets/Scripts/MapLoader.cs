@@ -68,7 +68,7 @@ public class MapLoader : MonoBehaviour
             var obj = new GameObject("Group_" + groupMaks, typeof(LineRenderer), typeof(ClosestPointLineRenderer));
             obj.transform.parent = Routes;
             var line = obj.GetComponent<LineRenderer>();
-            line.widthMultiplier = 3;
+            line.widthMultiplier = 0;
             line.positionCount = itterator[groupMaks];
             line.SetPositions(pathsByGroup[groupMaks]);
         }

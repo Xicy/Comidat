@@ -2,6 +2,8 @@
 
 public class MoveController : MonoBehaviour
 {
+    public Transform nameField;
+
     public bool IsActive
     {
         set { gameObject.SetActive(value); }
@@ -16,6 +18,11 @@ public class MoveController : MonoBehaviour
         if (!Moving) return;
         GetComponent<Animator>().Play("Idle");
         Moving = false;
+    }
+
+    void LateUpdate()
+    {
+        iTween.LookTo(nameField.gameObject, Camera.main.transform.position, 1);
     }
 
     public void Move(Vector3 target)
