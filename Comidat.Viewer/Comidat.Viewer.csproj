@@ -211,6 +211,24 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
+    <Reference Include="I18N.CJK">
+      <HintPath>Assets/Scripts/I18N.CJK.dll</HintPath>
+    </Reference>
+    <Reference Include="I18N">
+      <HintPath>Assets/Scripts/I18N.dll</HintPath>
+    </Reference>
+    <Reference Include="I18N.MidEast">
+      <HintPath>Assets/Scripts/I18N.MidEast.dll</HintPath>
+    </Reference>
+    <Reference Include="I18N.Other">
+      <HintPath>Assets/Scripts/I18N.Other.dll</HintPath>
+    </Reference>
+    <Reference Include="I18N.Rare">
+      <HintPath>Assets/Scripts/I18N.Rare.dll</HintPath>
+    </Reference>
+    <Reference Include="I18N.West">
+      <HintPath>Assets/Scripts/I18N.West.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data">
       <HintPath>Assets/Scripts/System.Data.dll</HintPath>
     </Reference>
@@ -220,24 +238,6 @@
     <Reference Include="UnityEngine.Purchasing">
       <HintPath>C:/Users/umuta/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.purchasing@1.0.1/UnityEngine.Purchasing.dll</HintPath>
     </Reference>
-    <Reference Include="I18N.West">
-      <HintPath>Assets/Scripts/I18N.West.dll</HintPath>
-    </Reference>
-    <Reference Include="I18N.MidEast">
-      <HintPath>Assets/Scripts/I18N.MidEast.dll</HintPath>
-    </Reference>
-    <Reference Include="I18N.Other">
-      <HintPath>Assets/Scripts/I18N.Other.dll</HintPath>
-    </Reference>
-    <Reference Include="I18N">
-      <HintPath>Assets/Scripts/I18N.dll</HintPath>
-    </Reference>
-    <Reference Include="I18N.Rare">
-      <HintPath>Assets/Scripts/I18N.Rare.dll</HintPath>
-    </Reference>
-    <Reference Include="I18N.CJK">
-      <HintPath>Assets/Scripts/I18N.CJK.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\AssemblyInfo.cs" />
@@ -246,6 +246,7 @@
     <Compile Include="Assets\Scripts\ClosestPointLineRenderer.cs" />
     <Compile Include="Assets\Scripts\DataContext.cs" />
     <Compile Include="Assets\Scripts\Helper.cs" />
+    <Compile Include="Assets\Scripts\iTween\iTween.cs" />
     <Compile Include="Assets\Scripts\MapLoader.cs" />
     <Compile Include="Assets\Scripts\Model\TagWithLocation.cs" />
     <Compile Include="Assets\Scripts\Model\TBLMap.cs" />
@@ -253,7 +254,6 @@
     <Compile Include="Assets\Scripts\Model\TBLReader.cs" />
     <Compile Include="Assets\Scripts\Model\TBLTag.cs" />
     <Compile Include="Assets\Scripts\MoveController.cs" />
-    <Compile Include="Assets\Scripts\Pixelplacement\iTween\iTween.cs" />
     <Compile Include="Assets\Scripts\Route.cs" />
     <Compile Include="Assets\Scripts\SelectOverMouse.cs" />
     <Compile Include="Assets\Scripts\TagController.cs" />
@@ -264,15 +264,15 @@
     <Compile Include="Assets\Scripts\TriLib\Scripts\AssetLoader\AssetLoaderOptions.cs" />
     <Compile Include="Assets\Scripts\TriLib\Scripts\AssetLoader\AssimpConfigs.cs" />
     <Compile Include="Assets\Scripts\TriLib\Scripts\AssetLoader\AssimpInterop.cs" />
+    <Compile Include="Assets\Scripts\TriLib\Scripts\AvatarLoader.cs" />
     <Compile Include="Assets\Scripts\TriLib\Scripts\Extensions\CameraExtensions.cs" />
     <Compile Include="Assets\Scripts\TriLib\Scripts\Extensions\FileUtils.cs" />
     <Compile Include="Assets\Scripts\TriLib\Scripts\Extensions\MatrixExtensions.cs" />
     <Compile Include="Assets\Scripts\TriLib\Scripts\Extensions\StringUtils.cs" />
     <Compile Include="Assets\Scripts\TriLib\Scripts\Extensions\Texture2DUtils.cs" />
     <Compile Include="Assets\Scripts\TriLib\Scripts\Extensions\TransformExtensions.cs" />
-    <Compile Include="Assets\Scripts\TriLibExtras\Scripts\AvatarLoader.cs" />
-    <Compile Include="Assets\Scripts\TriLibExtras\Scripts\IlInterop.cs" />
-    <Compile Include="Assets\Scripts\TriLibExtras\Scripts\ILLoader.cs" />
+    <Compile Include="Assets\Scripts\TriLib\Scripts\IlInterop.cs" />
+    <Compile Include="Assets\Scripts\TriLib\Scripts\ILLoader.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

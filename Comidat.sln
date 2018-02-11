@@ -35,8 +35,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Comidat.Licence", "Comidat.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comidat.Viewer", "Comidat.Viewer\Comidat.Viewer.csproj", "{0FA204C5-C3C5-3FDE-D983-29841B098215}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comidat.Viewer.Editor", "Comidat.Viewer\Comidat.Viewer.Editor.csproj", "{7374EB3C-407F-202A-D064-1A9BEDCB9E62}"
-EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Comidat.Data\Comidat.Data.projitems*{04a39069-7eb6-4fde-b38e-c5a3521d0091}*SharedItemsImports = 13
@@ -137,18 +135,6 @@ Global
 		{0FA204C5-C3C5-3FDE-D983-29841B098215}.Release|x64.Build.0 = Release|Any CPU
 		{0FA204C5-C3C5-3FDE-D983-29841B098215}.Release|x86.ActiveCfg = Release|Any CPU
 		{0FA204C5-C3C5-3FDE-D983-29841B098215}.Release|x86.Build.0 = Release|Any CPU
-		{7374EB3C-407F-202A-D064-1A9BEDCB9E62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7374EB3C-407F-202A-D064-1A9BEDCB9E62}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7374EB3C-407F-202A-D064-1A9BEDCB9E62}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{7374EB3C-407F-202A-D064-1A9BEDCB9E62}.Debug|x64.Build.0 = Debug|Any CPU
-		{7374EB3C-407F-202A-D064-1A9BEDCB9E62}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{7374EB3C-407F-202A-D064-1A9BEDCB9E62}.Debug|x86.Build.0 = Debug|Any CPU
-		{7374EB3C-407F-202A-D064-1A9BEDCB9E62}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7374EB3C-407F-202A-D064-1A9BEDCB9E62}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7374EB3C-407F-202A-D064-1A9BEDCB9E62}.Release|x64.ActiveCfg = Release|Any CPU
-		{7374EB3C-407F-202A-D064-1A9BEDCB9E62}.Release|x64.Build.0 = Release|Any CPU
-		{7374EB3C-407F-202A-D064-1A9BEDCB9E62}.Release|x86.ActiveCfg = Release|Any CPU
-		{7374EB3C-407F-202A-D064-1A9BEDCB9E62}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -160,7 +146,6 @@ Global
 		{C5F80730-F44F-4478-BDAE-6634EFC2CA88} = {3D8D2A6E-F1E4-4A7A-8D4E-6F63D1BD6351}
 		{359CC8B5-5C44-4325-9174-9578C0BAEF24} = {3D8D2A6E-F1E4-4A7A-8D4E-6F63D1BD6351}
 		{0FA204C5-C3C5-3FDE-D983-29841B098215} = {3D8D2A6E-F1E4-4A7A-8D4E-6F63D1BD6351}
-		{7374EB3C-407F-202A-D064-1A9BEDCB9E62} = {3D8D2A6E-F1E4-4A7A-8D4E-6F63D1BD6351}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0DF6C905-7FA2-4557-8D89-1F862E559742}
