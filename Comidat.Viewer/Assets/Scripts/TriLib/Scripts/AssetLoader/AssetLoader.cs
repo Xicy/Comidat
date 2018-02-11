@@ -6,7 +6,7 @@ using Object = UnityEngine.Object;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-
+// ReSharper disable All
 namespace TriLib
 {
     /// <summary>

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Comidat.Data.Model
+﻿namespace Comidat.Data.Model
 {
     public class TagWithLocation
     {

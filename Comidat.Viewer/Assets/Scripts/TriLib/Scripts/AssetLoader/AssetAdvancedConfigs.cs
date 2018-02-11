@@ -1,5 +1,5 @@
 ﻿using System;
-
+// ReSharper disable All
 namespace TriLib
 {
     /// <summary>

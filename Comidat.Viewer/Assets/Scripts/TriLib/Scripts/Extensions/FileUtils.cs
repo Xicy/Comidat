@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-
+﻿// ReSharper disable All
 namespace TriLib {
     public static class FileUtils
     {

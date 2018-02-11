@@ -4,7 +4,7 @@ using System;
 #if USE_DEVIL
 using DevIL;
 #endif
-
+// ReSharper disable All
 namespace TriLib
 {
     /// <summary>

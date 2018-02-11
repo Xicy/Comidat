@@ -771,7 +771,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4752582354911790}
   - component: {fileID: 33627809954050686}
-  - component: {fileID: 64413182488058390}
   - component: {fileID: 23607020039433502}
   m_Layer: 8
   m_Name: Plane
@@ -2057,7 +2056,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1918130963988724}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.8235208, y: -4.2152815, z: -6.3186946}
   m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
   m_Children:
   - {fileID: 4091803432430318}
@@ -2191,12 +2190,12 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1740322041893196}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 0
   m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
   m_Materials:
   - {fileID: 2100000, guid: 2c7f514d4b25d674b8bf51cedbf45ac3, type: 2}
   m_StaticBatchInfo:
@@ -2224,20 +2223,6 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1740322041893196}
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!64 &64413182488058390
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1740322041893196}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!65 &65549327882062184
 BoxCollider:

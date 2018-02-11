@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Linq;
 using TriLib;
 using UnityEngine;
 
@@ -31,7 +30,7 @@ public class MapLoader : MonoBehaviour
         Map = assetLoader.LoadFromFile(mapFilePath, assetLoaderOptions);
         Map.transform.position = new Vector3(0f, 0f, 0f);
         Map.name = "Map";
-        this.SetMap();
+        SetMap();
         return true;
     }
 

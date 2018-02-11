@@ -10,7 +10,7 @@ public class MoveController : MonoBehaviour
         get { return gameObject.activeSelf; }
     }
 
-    public bool Moving = false;
+    public bool Moving;
     public float MSpeed = 2.0f;
 
     public void MoveDone()

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+// ReSharper disable All
 namespace TriLib.Extras {
     /// <summary>
     /// Represents an avatar loader behaviour. The main class used to load avatars.
