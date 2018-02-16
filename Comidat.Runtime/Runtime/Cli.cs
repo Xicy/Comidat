@@ -32,6 +32,7 @@ namespace Comidat.Runtime
         /// </summary>
         public static void WriteHeader()
         {
+            //TODO:bastan düzgün bir yöntem width i küçük olanlar içinde
             if (_title != null) Console.Title = _title;
 
             Console.ForegroundColor = _color;
@@ -39,10 +40,10 @@ namespace Comidat.Runtime
             var max = lines.Max(l => l.Length);
             //TODO:Linux Control Close for linux
             //Console.WindowWidth = Math.Max(max + 1, Console.WindowWidth);
-            var left = new StringBuilder().Append(' ', (Console.WindowWidth - max - 1) / 2).ToString();
+            //var left = new StringBuilder().Append(' ', (Console.WindowWidth - max - 1) / 2).ToString();
             //var left = new StringBuilder().Append(' ', (max + 1) / 2).ToString();
             foreach (var line in lines)
-                Console.WriteLine(left + line);
+                Console.WriteLine(/*left +*/ line);
 
             Console.Write(new StringBuilder().Append('_', Console.WindowWidth).ToString());
             Console.ForegroundColor = ConsoleColor.DarkGray;
