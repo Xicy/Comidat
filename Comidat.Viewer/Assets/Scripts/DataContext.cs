@@ -10,14 +10,14 @@ public class DataContext : MonoBehaviour
 {
     public static DataContext Instance;
 
-    private string _conString = @"Server=sql.lc;Database=ComidatOld;User ID=SA;Password=Umut1996;";
-    //private string _conString = @"Server=.;Database=MinePts;User ID=sa;Password=comidat;";
+    //private string _conString = @"Server=sql.lc;Database=ComidatOld;User ID=SA;Password=Umut1996;";
+    private string _conString = @"Server=.;Database=MinePts;User ID=sa;Password=comidat;";
     private SqlConnection _dbCon;
 
     void Awake()
     {
         //TODO:Unutma !!!!!!
-        if ((DateTime.Parse("03/06/2018") - DateTime.Now).Days < 0)
+        if ((DateTime.Parse("04/01/2018") - DateTime.Now).Days < 0)
             Application.Quit();
 
         if (Instance == null)
