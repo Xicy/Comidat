@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Text;
 using Comidat.Diagnostics;
 
@@ -36,13 +35,13 @@ namespace Comidat.Runtime
             if (_title != null) Console.Title = _title;
 
             Console.ForegroundColor = _color;
-            var lines = _header.Split('\n');
-            var max = lines.Max(l => l.Length);
+            //var lines = _header.Split('\n');
+            //var max = lines.Max(l => l.Length);
             //TODO:Linux Control Close for linux
             //Console.WindowWidth = Math.Max(max + 1, Console.WindowWidth);
             //var left = new StringBuilder().Append(' ', (Console.WindowWidth - max - 1) / 2).ToString();
             //var left = new StringBuilder().Append(' ', (max + 1) / 2).ToString();
-            foreach (var line in lines)
+            foreach (var line in _header.Split('\n'))
                 Console.WriteLine(/*left +*/ line);
 
             Console.Write(new StringBuilder().Append('_', Console.WindowWidth).ToString());

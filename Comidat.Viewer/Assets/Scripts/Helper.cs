@@ -49,22 +49,18 @@ public static class Helper
 
     public static GameObject Find(this GameObject go, string nameToFind, bool bSearchInChildren)
     {
-        if (bSearchInChildren)
+        if (!bSearchInChildren) return GameObject.Find(nameToFind);
+
+        var transform = go.transform;
+        for (var i = 0; i < transform.childCount; ++i)
         {
-            var transform = go.transform;
-            for (int i = 0; i < transform.childCount; ++i)
-            {
-                var child = transform.GetChild(i);
-                if (child.gameObject.name == nameToFind)
-                    return child.gameObject;
-                GameObject result = child.gameObject.Find(nameToFind, bSearchInChildren);
-                if (result != null) return result;
-            }
-            return null;
+            var child = transform.GetChild(i);
+            if (child.gameObject.name == nameToFind)
+                return child.gameObject;
+            var result = child.gameObject.Find(nameToFind, true);
+            if (result != null) return result;
         }
-        else
-        {
-            return GameObject.Find(nameToFind);
-        }
+        return null;
+
     }
 }
