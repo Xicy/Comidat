@@ -38,6 +38,6 @@ using System.Runtime.InteropServices;
 [assembly: Obfuscation(Exclude = false, Feature = "+constants")]
 [assembly: Obfuscation(Exclude = false, Feature = "+anti ildasm")]
 [assembly: Obfuscation(Exclude = false, Feature = "+anti debug")]
-[assembly: Obfuscation(Exclude = false, Feature = "+resources(mode=dynamic)")]
+//[assembly: Obfuscation(Exclude = false, Feature = "+resources(mode=dynamic)")] //Deteced by antivirus
 [assembly: Obfuscation(Exclude = false, Feature = "+ctrl flow(predicate=expression)")]
 [assembly: Obfuscation(Exclude = false, Feature = "+rename(mode=reversible,password=Umut1996)")]
