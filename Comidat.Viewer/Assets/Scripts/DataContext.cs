@@ -11,7 +11,7 @@ public class DataContext : MonoBehaviour
     public static DataContext Instance;
 
     //private string _conString = @"Server=sql.lc;Database=ComidatOld;User ID=SA;Password=Umut1996;";
-    private string _conString = @"Server=.;Database=MinePts;User ID=sa;Password=comidat;";
+    private string _conString = @"Server=.;Database=MinePts;User ID=sa;Password=comidat;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=True;";
     private SqlConnection _dbCon;
 
     void Awake()

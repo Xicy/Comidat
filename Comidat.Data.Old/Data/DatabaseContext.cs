@@ -40,7 +40,7 @@ namespace Comidat.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
-                $@"Server={_server};Database={_database};User ID={_user};Password={_password};");
+                $@"Server={_server};Database={_database};User ID={_user};Password={_password};MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=True;");
         }
 
         /*
