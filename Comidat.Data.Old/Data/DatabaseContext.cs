@@ -2,6 +2,7 @@
 using Comidat.Data.Model;
 #if EF6
 using System.Data.Entity;
+// ReSharper disable PrivateFieldCanBeConvertedToLocalVariable
 #else
 using Microsoft.EntityFrameworkCore;
 #endif
