@@ -17,7 +17,7 @@ namespace Comidat.Data
         private readonly string _user;
 
 #if DEBUG
-        public DatabaseContext() : this("sql.lc", "ComidatOld", "SA", "Umut1996")
+        public DatabaseContext() : this("sql.lc", "ComidatOld", "SA", "Umut1996") 
 #else
         public DatabaseContext() : this(".", "MinePts", "sa", "comidat")
 #endif
