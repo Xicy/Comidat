@@ -93,5 +93,21 @@ namespace Comidat.Runtime
         {
             return Factorial(n) / (Factorial(r) * Factorial(n - r));
         }
+
+#if EF6
+        public static System.Threading.Tasks.Task Delay(double milliseconds)
+        {
+            var tcs = new System.Threading.Tasks.TaskCompletionSource<bool>();
+            var timer = new System.Timers.Timer();
+            timer.Elapsed+=(obj, args) =>
+            {
+                tcs.TrySetResult(true);
+            };
+            timer.Interval = milliseconds;
+            timer.AutoReset = false;
+            timer.Start();
+            return tcs.Task;
+        }
+#endif
     }
 }

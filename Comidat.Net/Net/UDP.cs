@@ -52,7 +52,11 @@ namespace Comidat.Net
         /// <inheritdoc />
         /// <param name="ipe">IP and Port for server to start</param>
         /// <returns></returns>
-        public async Task StartAsync(IPEndPoint ipe)
+        public
+#if !EF6
+            async
+#endif
+            Task StartAsync(IPEndPoint ipe)
         {
             // create server and put ip and port
             _server = new UdpClient(ipe);
@@ -67,9 +71,14 @@ namespace Comidat.Net
                 try
                 {
                     // accept client connection
+#if EF6
+                    throw new Exception("Not Support for Net 4.0");
+#else
                     var client = await _server.ReceiveAsync();
                     MessageReceived?.Invoke(this,
-                        new MessageReceivedEventArgs(client.RemoteEndPoint.Address.ToString(), client.Buffer));
+                                       new MessageReceivedEventArgs(client.RemoteEndPoint.Address.ToString(), client.Buffer));
+#endif
+
                 }
                 //if objecet is disposed and server stopeed give info
                 catch (ObjectDisposedException) when (_cancellationToken.IsCancellationRequested)
@@ -82,6 +91,9 @@ namespace Comidat.Net
                     Logger.Exception(ex, Localization.Get("Comidat.Controller.Server.TCP.StartAsync.Exception"),
                         ex.Message);
                 }
+#if EF6
+            return Task.Factory.StartNew(() => 0);
+#endif
         }
 
         /// <inheritdoc />

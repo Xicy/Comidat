@@ -168,7 +168,7 @@ namespace Comidat
         }
 
 
-        private static async Task Test()
+        private static Task Test()
         {
             var r = new Random(DateTime.Now.Second);
             var client = new TcpClient();
@@ -190,7 +190,7 @@ namespace Comidat
             while (true)
             {
                 client.Client.Send(Encoding.UTF8.GetBytes(data[r.Next(data.Length)]), SocketFlags.None);
-                await Task.Delay(10);
+                Helper.Delay(10).Wait();
             }
 
             // await client.DisconnectAsync();

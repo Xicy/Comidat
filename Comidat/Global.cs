@@ -15,7 +15,7 @@ namespace Comidat
         static Global()
         {
             //TODO:Unutma !!!!!!
-            if((DateTime.Parse("01/04/2018") - DateTime.Now).Days < 0)
+            if ((DateTime.Parse("01/04/2018") - DateTime.Now).Days < 0)
                 Environment.Exit(-1);
 
             for (int i = 0; i < 101; i++)
@@ -324,14 +324,26 @@ namespace Comidat
             return ret;
         }*/
 
-        public static async Task SaveDataBaseAync()
+        public static
+#if !EF6
+    async
+#endif
+            Task SaveDataBaseAync()
         {
             while (true)
             {
+#if EF6
+                Helper.Delay(5000).Wait();
+#else
                 await Task.Delay(TimeSpan.FromSeconds(5));
+#endif
                 try
                 {
+#if EF6
+                    Database.SaveChanges();
+#else
                     Database.SaveChangesAsync().Wait(0);
+#endif
                 }
                 catch (Exception exception)
                 {

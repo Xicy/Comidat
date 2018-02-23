@@ -1,9 +1,11 @@
-﻿using System;
+﻿#if !EF6
+using System;
 using System.Net;
 using System.Threading.Tasks;
 using Comidat.Net.EventArgs;
 using MQTTnet;
 using MQTTnet.Server;
+
 
 namespace Comidat.Net
 {
@@ -77,3 +79,4 @@ namespace Comidat.Net
         }
     }
 }
+#endif
