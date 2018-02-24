@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
@@ -25,8 +26,12 @@ namespace Comidat
             _baseFontBold = FontFactory.GetFont(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "arial.ttf"), "Cp1254", true, 12, iTextSharp.text.Font.BOLD, BaseColor.BLACK);
             _headerFont = FontFactory.GetFont(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "arial.ttf"), "Cp1254", true, 14, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
 
-            DateTime minDate = _database.TBLPositions.Min(p => p.RecordDateTime);
-            DateTime maxDate = _database.TBLPositions.Max(p => p.RecordDateTime);
+            DateTime minDate = DateTime.Now, maxDate = DateTime.Now;
+            if (_database.TBLPositions.Any())
+            {
+                minDate = _database.TBLPositions.Min(p => p.RecordDateTime);
+                maxDate = _database.TBLPositions.Max(p => p.RecordDateTime);
+            }
 
             dateTimePickerFirst.MinDate = minDate;
             dateTimePickerFirst.MaxDate = maxDate;
@@ -71,11 +76,13 @@ namespace Comidat
                 table.SpacingAfter = 16;
                 document.Add(table);
 
+                
+
                 //Get Table Data
                 var data = _database.TBLPositions
-                    .Where(p => p.RecordDateTime.Date >= dateTimePickerFirst.Value.Date && p.RecordDateTime.Date <= dateTimePickerLast.Value.Date)
+                    .Where(p => DbFunctions.TruncateTime(p.RecordDateTime) >= dateTimePickerFirst.Value.Date && DbFunctions.TruncateTime(p.RecordDateTime) <= dateTimePickerLast.Value.Date)
                     //.OrderBy(p => p.TagId)
-                    .OrderBy(p => p.RecordDateTime)
+                    .OrderBy(p => DbFunctions.TruncateTime(p.RecordDateTime))
                     .Join(_database.TBLMaps, p => p.MapId, m => m.Id,
                         (p, m) => new { Position = p, Map = m }) //Join Map
                     .Join(_database.TBLTags, p => p.Position.TagId, t => t.Id,
@@ -107,7 +114,7 @@ namespace Comidat
                 File.WriteAllBytes(sfd.FileName, ms.ToArray());
                 ms.Close();
             }
-
+            GC.WaitForFullGCComplete();
             MessageBox.Show(@"Dışarı Aktarma Başarılı Birşekilde Tamamlandı.", @"Dışarı Aktarma", MessageBoxButtons.OK);
         }
     }
