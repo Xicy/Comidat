@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Comidat.Data.Model;
 using Comidat.Diagnostics;
@@ -47,7 +48,7 @@ namespace Comidat
             server.Connected += ServerOnConnected;
             server.Disconnected += ServerOnDisconnected;
             server.MessageReceived += ServerOnMessageReceived;
-            server.StartAsync(new IPEndPoint(IPAddress.Any, 5757));
+            new Thread(() => server.StartAsync(new IPEndPoint(IPAddress.Any, 5757))).Start();
             Logger.Progress(3, ProgressStep);
 
             //Settings up Database
@@ -73,7 +74,7 @@ namespace Comidat
 
             //Test(server).Wait(0);
 
-            Global.SaveDataBaseAync().Wait(0);
+            new Thread(() => Global.SaveDataBaseAync()).Start();
 
             console.Wait();
         }
