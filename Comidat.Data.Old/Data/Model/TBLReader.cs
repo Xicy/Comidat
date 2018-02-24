@@ -3,6 +3,7 @@ using System.Reflection;
 
 namespace Comidat.Data.Model
 {
+    [Obfuscation(Exclude = true)]
     public class TBLReader
     {
         [Key] [Obfuscation(Exclude = true)] public int local_id { get; set; }

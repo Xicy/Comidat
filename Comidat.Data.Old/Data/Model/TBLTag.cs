@@ -4,6 +4,7 @@ using System.Reflection;
 
 namespace Comidat.Data.Model
 {
+    [Obfuscation(Exclude = true)]
     public class TBLTag
     {
         [Key] [Obfuscation(Exclude = true)] public long Id { get; set; }

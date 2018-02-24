@@ -4,6 +4,7 @@ using System.Reflection;
 
 namespace Comidat.Data.Model
 {
+    [Obfuscation(Exclude = true)]
     public class TBLPosition
     {
         public TBLPosition()

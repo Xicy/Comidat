@@ -37,7 +37,7 @@ namespace Comidat.Data
                     };MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=True;";
             Database.CreateIfNotExists();
 #else
-          //Database.EnsureDeleted();
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
 #endif
         }
@@ -55,14 +55,13 @@ namespace Comidat.Data
             optionsBuilder.UseSqlServer(
                 $@"Server={_server};Database={_database};User ID={_user};Password={_password};MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=True;");
         }
-#endif
-
-        /*
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+#else
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema("Comidat");
+            //modelBuilder.HasDefaultSchema("Comidat");
             base.OnModelCreating(modelBuilder);
         }
-        */
+#endif
+
     }
 }
