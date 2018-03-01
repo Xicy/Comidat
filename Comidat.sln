@@ -35,6 +35,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Comidat.Licence", "Comidat.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comidat.Viewer", "Comidat.Viewer\Comidat.Viewer.csproj", "{0FA204C5-C3C5-3FDE-D983-29841B098215}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comidat.Viewer.TwoD", "Comidat.Viewer.TwoD\Comidat.Viewer.TwoD.csproj", "{C60484E7-0D47-44D6-9893-5A2B3DDE5D91}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Comidat.Data\Comidat.Data.projitems*{04a39069-7eb6-4fde-b38e-c5a3521d0091}*SharedItemsImports = 13
@@ -47,6 +49,11 @@ Global
 		Comidat.Net\Comidat.Net.projitems*{65dad8e4-a7e4-4d54-8c70-e0d76c09780c}*SharedItemsImports = 13
 		Comidat\Comidat.projitems*{90e2b1ee-ceb5-4d48-9ba2-6fb8c9bf6117}*SharedItemsImports = 13
 		Comidat.Data.Old\Comidat.Data.Old.projitems*{bc65657e-52e0-4a83-a55a-1e5fa0bd0670}*SharedItemsImports = 13
+		Comidat.Data.Old\Comidat.Data.Old.projitems*{c60484e7-0d47-44d6-9893-5a2b3dde5d91}*SharedItemsImports = 4
+		Comidat.Embed\Comidat.Embed.projitems*{c60484e7-0d47-44d6-9893-5a2b3dde5d91}*SharedItemsImports = 4
+		Comidat.IO\Comidat.IO.projitems*{c60484e7-0d47-44d6-9893-5a2b3dde5d91}*SharedItemsImports = 4
+		Comidat.Runtime\Comidat.Runtime.projitems*{c60484e7-0d47-44d6-9893-5a2b3dde5d91}*SharedItemsImports = 4
+		Comidat.Util\Comidat.Util.projitems*{c60484e7-0d47-44d6-9893-5a2b3dde5d91}*SharedItemsImports = 4
 		Comidat.IO\Comidat.IO.projitems*{d0478288-50bf-4308-87bd-e080b3f37cb3}*SharedItemsImports = 13
 		Comidat.Data.Old\Comidat.Data.Old.projitems*{e6fe3f18-d0b8-4075-84ee-f346b394d941}*SharedItemsImports = 4
 		Comidat.Embed\Comidat.Embed.projitems*{e6fe3f18-d0b8-4075-84ee-f346b394d941}*SharedItemsImports = 4
@@ -135,6 +142,18 @@ Global
 		{0FA204C5-C3C5-3FDE-D983-29841B098215}.Release|x64.Build.0 = Release|Any CPU
 		{0FA204C5-C3C5-3FDE-D983-29841B098215}.Release|x86.ActiveCfg = Release|Any CPU
 		{0FA204C5-C3C5-3FDE-D983-29841B098215}.Release|x86.Build.0 = Release|Any CPU
+		{C60484E7-0D47-44D6-9893-5A2B3DDE5D91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C60484E7-0D47-44D6-9893-5A2B3DDE5D91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C60484E7-0D47-44D6-9893-5A2B3DDE5D91}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C60484E7-0D47-44D6-9893-5A2B3DDE5D91}.Debug|x64.Build.0 = Debug|Any CPU
+		{C60484E7-0D47-44D6-9893-5A2B3DDE5D91}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C60484E7-0D47-44D6-9893-5A2B3DDE5D91}.Debug|x86.Build.0 = Debug|Any CPU
+		{C60484E7-0D47-44D6-9893-5A2B3DDE5D91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C60484E7-0D47-44D6-9893-5A2B3DDE5D91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C60484E7-0D47-44D6-9893-5A2B3DDE5D91}.Release|x64.ActiveCfg = Release|Any CPU
+		{C60484E7-0D47-44D6-9893-5A2B3DDE5D91}.Release|x64.Build.0 = Release|Any CPU
+		{C60484E7-0D47-44D6-9893-5A2B3DDE5D91}.Release|x86.ActiveCfg = Release|Any CPU
+		{C60484E7-0D47-44D6-9893-5A2B3DDE5D91}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -146,6 +165,7 @@ Global
 		{C5F80730-F44F-4478-BDAE-6634EFC2CA88} = {3D8D2A6E-F1E4-4A7A-8D4E-6F63D1BD6351}
 		{359CC8B5-5C44-4325-9174-9578C0BAEF24} = {3D8D2A6E-F1E4-4A7A-8D4E-6F63D1BD6351}
 		{0FA204C5-C3C5-3FDE-D983-29841B098215} = {3D8D2A6E-F1E4-4A7A-8D4E-6F63D1BD6351}
+		{C60484E7-0D47-44D6-9893-5A2B3DDE5D91} = {3D8D2A6E-F1E4-4A7A-8D4E-6F63D1BD6351}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0DF6C905-7FA2-4557-8D89-1F862E559742}

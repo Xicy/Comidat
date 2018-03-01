@@ -33,8 +33,7 @@ namespace Comidat
 
             //Logger Settings Up
             Logger.Archive = Path.Combine(Environment.CurrentDirectory, "Logs");
-            Logger.LogFile = Path.Combine(Environment.CurrentDirectory, "Logs",
-                "Comidat.log");
+            Logger.LogFile = Path.Combine(Environment.CurrentDirectory, "Logs", "Comidat.log");
             Logger.Progress(1, ProgressStep);
 
             //Console commands activating
