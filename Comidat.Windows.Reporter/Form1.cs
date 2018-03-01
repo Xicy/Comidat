@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Comidat.Data;
+using Comidat.IO;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using Microsoft.EntityFrameworkCore;
 
 namespace Comidat
 {
@@ -15,11 +18,19 @@ namespace Comidat
         private readonly Font _baseFont;
         private readonly Font _baseFontBold;
         private readonly Font _headerFont;
+
         public Form1()
         {
             InitializeComponent();
 
-            _database = new DatabaseContext();
+            var settings = new Dictionary<string, string>();
+            foreach (var setting in new FileReader(Path.Combine(Environment.CurrentDirectory, "settings.ini")))
+            {
+                var a = setting.Value.Split(new[] { '=' }, 2);
+                settings.Add(a[0].Trim().ToLowerInvariant(), a[1].Trim());
+            }
+
+            _database = new DatabaseContext(settings["database"]);
 
             _baseFont = FontFactory.GetFont(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "arial.ttf"), "Cp1254", true, 12, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
             _baseFontBold = FontFactory.GetFont(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "arial.ttf"), "Cp1254", true, 12, iTextSharp.text.Font.BOLD, BaseColor.BLACK);
@@ -50,65 +61,103 @@ namespace Comidat
             return table;
         }
 
-        private void ExportButton_Click(object sender, EventArgs e)
+        private void Invoke<T>(T con, Action<T> ac) where T : Control
         {
+            if (con.InvokeRequired)
+                con.BeginInvoke((Action)(() => { ac(con); }));
+            else
+                ac(con);
+        }
 
+        private async void ExportButton_Click(object sender, EventArgs e)
+        {
             using (SaveFileDialog sfd = new SaveFileDialog())
-            using (MemoryStream ms = new MemoryStream())
-            using (Document document = new Document(PageSize.A4, 36F, 36F, 36F, 36F))
-            using (PdfWriter writer = PdfWriter.GetInstance(document, ms))
             {
                 sfd.Filter = @"PDF|*.pdf";
                 if (sfd.ShowDialog() != DialogResult.OK) return;
+                exportButton.Enabled = false;
+                progressBar1.Value = 0;
 
-                //Open PDF Document
-                document.Open();
-                document.Add(HeaderOfCompany("Comidat Personal Takip Raporu"));
-
-                PdfPTable table = new PdfPTable(2) { WidthPercentage = 100 };
-                table.AddCell(new PdfPCell(new Phrase { new Chunk("Tarih Aralığı", _baseFontBold), new Chunk($":{dateTimePickerFirst.Value:d} - {dateTimePickerLast.Value:d}", _baseFont) }) { BorderWidth = 0 });
-                table.AddCell(new PdfPCell(new Phrase { new Chunk("Rapor Tarihi", _baseFontBold), new Chunk($":{DateTime.Now:d}", _baseFont) }) { BorderWidth = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
-                table.SpacingAfter = 16;
-                document.Add(table);
-
-                //Get Table Data
-                var data = _database.TBLPositions
-                    .Where(p => p.RecordDateTime.Date >= dateTimePickerFirst.Value.Date && p.RecordDateTime.Date <= dateTimePickerLast.Value.Date)
-                    //.OrderBy(p => p.TagId)
-                    .OrderBy(p => p.RecordDateTime)
-                    .Join(_database.TBLMaps, p => p.MapId, m => m.Id,
-                        (p, m) => new { Position = p, Map = m }) //Join Map
-                    .Join(_database.TBLTags, p => p.Position.TagId, t => t.Id,
-                        (p, t) => new { p.Position, p.Map, Tag = t }); //Join Tags
-
-                //Write Table
-                table = new PdfPTable(new[] { 3F, 3F, 2F, 1F, 1F, 4F }) { HeaderRows = 1, WidthPercentage = 100 };
-                table.DefaultCell.HorizontalAlignment = Element.ALIGN_CENTER;
-                table.AddCell(new PdfPCell(new Phrase("İsim", _baseFontBold)) { HorizontalAlignment = Element.ALIGN_CENTER, GrayFill = 0.85F });
-                table.AddCell(new PdfPCell(new Phrase("Soyisim", _baseFontBold)) { HorizontalAlignment = Element.ALIGN_CENTER, GrayFill = 0.85F });
-                table.AddCell(new PdfPCell(new Phrase("Harita", _baseFontBold)) { HorizontalAlignment = Element.ALIGN_CENTER, GrayFill = 0.85F });
-                table.AddCell(new PdfPCell(new Phrase("X", _baseFontBold)) { HorizontalAlignment = Element.ALIGN_CENTER, GrayFill = 0.85F });
-                table.AddCell(new PdfPCell(new Phrase("Y", _baseFontBold)) { HorizontalAlignment = Element.ALIGN_CENTER, GrayFill = 0.85F });
-                table.AddCell(new PdfPCell(new Phrase("Tarih", _baseFontBold)) { HorizontalAlignment = Element.ALIGN_CENTER, GrayFill = 0.85F });
-                foreach (var obj in data)
+                using (var bs = new FileStream(sfd.FileName, FileMode.Create, FileAccess.ReadWrite))
+                using (Document document = new Document(PageSize.A4, 36F, 36F, 36F, 36F))
+                using (PdfWriter writer = PdfWriter.GetInstance(document, bs))
                 {
-                    table.AddCell(new PdfPCell(new Phrase(obj.Tag.TagFirstName, _baseFont)) { HorizontalAlignment = Element.ALIGN_LEFT });
-                    table.AddCell(new PdfPCell(new Phrase(obj.Tag.TagLastName, _baseFont)) { HorizontalAlignment = Element.ALIGN_LEFT });
-                    table.AddCell(new Phrase(obj.Map.MapName, _baseFont));
-                    table.AddCell(new Phrase(obj.Position.d_XPosition.ToString(), _baseFont));
-                    table.AddCell(new Phrase(obj.Position.d_yPosition.ToString(), _baseFont));
-                    table.AddCell(new Phrase(obj.Position.RecordDateTime.ToString("g"), _baseFont));
+                    writer.SetFullCompression();
+                    //Open PDF Document
+                    document.Open();
+                    document.Add(HeaderOfCompany("Comidat Personal Takip Raporu"));
+
+                    PdfPTable table = new PdfPTable(2) { WidthPercentage = 100 };
+                    table.AddCell(new PdfPCell(new Phrase
+                        {
+                        new Chunk("Tarih Aralığı", _baseFontBold),
+                        new Chunk($":{dateTimePickerFirst.Value:d} - {dateTimePickerLast.Value:d}", _baseFont)
+                        })
+                    { BorderWidth = 0 });
+                    table.AddCell(
+                        new PdfPCell(new Phrase
+                        {
+                            new Chunk("Rapor Tarihi", _baseFontBold),
+                            new Chunk($":{DateTime.Now:d}", _baseFont)
+                        })
+                        { BorderWidth = 0, HorizontalAlignment = Element.ALIGN_RIGHT });
+                    table.SpacingAfter = 16;
+                    document.Add(table);
+
+                    //Get Table Data
+                    var data = _database.TBLPositions.AsNoTracking()
+                        .Where(p => p.RecordDateTime.Date >= dateTimePickerFirst.Value.Date && p.RecordDateTime.Date <= dateTimePickerLast.Value.Date)
+                        //.OrderBy(p => p.TagId)
+                        .OrderByDescending(p => p.RecordDateTime)
+                        .Join(_database.TBLMaps, p => p.MapId, m => m.Id,
+                            (p, m) => new { Position = p, Map = m }) //Join Map
+                        .Join(_database.TBLTags, p => p.Position.TagId, t => t.Id,
+                            (p, t) => new { p.Position, p.Map, Tag = t }); //Join Tags
+
+                    progressBar1.Maximum = data.Count();
+
+                    //Write Table
+                    table = new PdfPTable(new[] { 3F, 3F, 2F, 1F, 1F, 4F }) { HeaderRows = 1, WidthPercentage = 100 };
+                    table.DefaultCell.HorizontalAlignment = Element.ALIGN_CENTER;
+
+                    table.AddCell(new PdfPCell(new Phrase("İsim", _baseFontBold)) { HorizontalAlignment = Element.ALIGN_CENTER, GrayFill = 0.85F });
+                    table.AddCell(new PdfPCell(new Phrase("Soyisim", _baseFontBold)) { HorizontalAlignment = Element.ALIGN_CENTER, GrayFill = 0.85F });
+                    table.AddCell(new PdfPCell(new Phrase("Harita", _baseFontBold)) { HorizontalAlignment = Element.ALIGN_CENTER, GrayFill = 0.85F });
+                    table.AddCell(new PdfPCell(new Phrase("X", _baseFontBold)) { HorizontalAlignment = Element.ALIGN_CENTER, GrayFill = 0.85F });
+                    table.AddCell(new PdfPCell(new Phrase("Y", _baseFontBold)) { HorizontalAlignment = Element.ALIGN_CENTER, GrayFill = 0.85F });
+                    table.AddCell(new PdfPCell(new Phrase("Tarih", _baseFontBold)) { HorizontalAlignment = Element.ALIGN_CENTER, GrayFill = 0.85F });
+
+                    int iterator = 0;
+                    await data.ForEachAsync(obj =>
+                    {
+
+                        table.AddCell(new PdfPCell(new Phrase(obj.Tag.TagFirstName, _baseFont)) { HorizontalAlignment = Element.ALIGN_LEFT });
+                        table.AddCell(new PdfPCell(new Phrase(obj.Tag.TagLastName, _baseFont)) { HorizontalAlignment = Element.ALIGN_LEFT });
+                        table.AddCell(new PdfPCell(new Phrase(obj.Map.MapName, _baseFont)));
+                        table.AddCell(new PdfPCell(new Phrase(obj.Position.d_XPosition.ToString(), _baseFont)));
+                        table.AddCell(new PdfPCell(new Phrase(obj.Position.d_yPosition.ToString(), _baseFont)));
+                        table.AddCell(new PdfPCell(new Phrase(obj.Position.RecordDateTime.ToString("g"), _baseFont)));
+
+                        iterator++;
+                        Invoke(progressBar1, p => p.Value = iterator);
+
+                        if (iterator % 10001 != 0) return;
+                        document.Add(table);
+                        table.FlushContent();
+                    });
+
+                    document.Add(table);
+                    table.FlushContent();
+                    document.Close();
+                    writer.Close();
                 }
-                document.Add(table);
 
-                document.Close();
-                writer.SetFullCompression();
-                writer.Close();
-                File.WriteAllBytes(sfd.FileName, ms.ToArray());
-                ms.Close();
+                GC.Collect(GC.MaxGeneration);
+                GC.WaitForFullGCComplete();
+
+                MessageBox.Show(@"Dışarı Aktarma Başarılı Birşekilde Tamamlandı.", @"Dışarı Aktarma", MessageBoxButtons.OK);
+                exportButton.Enabled = true;
             }
-
-            MessageBox.Show(@"Dışarı Aktarma Başarılı Birşekilde Tamamlandı.", @"Dışarı Aktarma", MessageBoxButtons.OK);
         }
     }
 }
