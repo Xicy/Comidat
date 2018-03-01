@@ -10,7 +10,7 @@ namespace Comidat.Data
         private readonly string _password;
         private readonly string _server;
         private readonly string _user;
-
+        private readonly string _connectionString;
 #if DEBUG
         public DatabaseContext() : this("sql.lc", "ComidatOld", "SA", "Umut1996")
 #else
@@ -18,7 +18,12 @@ namespace Comidat.Data
 #endif
         { }
 
-        private DatabaseContext(string server, string database, string user, string password)
+        public DatabaseContext(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
+        public DatabaseContext(string server, string database, string user, string password)
         {
             _server = server;
             _database = database;
@@ -39,8 +44,11 @@ namespace Comidat.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(
-                $@"Server={_server};Database={_database};User ID={_user};Password={_password};MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=True;");
+            if (!string.IsNullOrEmpty(_connectionString))
+                optionsBuilder.UseSqlServer(_connectionString);
+            else
+                optionsBuilder.UseSqlServer(
+    $@"Server={_server};Database={_database};User ID={_user};Password={_password};MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=True;");
         }
 
         /*

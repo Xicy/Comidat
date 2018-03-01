@@ -17,7 +17,7 @@ public class DataContext : MonoBehaviour
     void Awake()
     {
         //TODO:Unutma !!!!!!
-        if ((DateTime.Parse("04/01/2018") - DateTime.Now).Days < 0)
+        if ((DateTime.Parse("05/01/2018") - DateTime.Now).Days < 0)
             Application.Quit();
 
         if (Instance == null)

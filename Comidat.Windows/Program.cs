@@ -102,9 +102,11 @@ namespace Comidat
                     var tagid = Global.Tags.First(t => t.TagMacAddress == tf.a.MacAddress.GetLong().ToString()).Id;
                     Global.Database.TBLPositions.Add(new TBLPosition
                     {
-                        XPosition = (int)tf.r.rd_pos_x,
+                        XPosition = (int)tf.r.rd_pos_x,//Three D
                         YPosition = (int)tf.r.rd_pos_y,
                         ZPosition = (int)tf.r.rd_pos_z,
+                        d_XPosition = (int)tf.r.d_rd_pos_x,//Two D
+                        d_yPosition = (int)tf.r.d_rd_pos_y,
                         TagId = tagid,
                         MapId = tf.r.MapId
                     });
@@ -119,6 +121,8 @@ namespace Comidat
                     var x = tf.r.rd_pos_x + (tl.r.rd_pos_x - tf.r.rd_pos_x) * (r1 / totalStep);
                     var y = tf.r.rd_pos_y + (tl.r.rd_pos_y - tf.r.rd_pos_y) * (r1 / totalStep);
                     var z = tf.r.rd_pos_z + (tl.r.rd_pos_z - tf.r.rd_pos_z) * (r1 / totalStep);
+                    var dx = tf.r.d_rd_pos_x + (tl.r.d_rd_pos_x - tf.r.d_rd_pos_x) * (r1 / totalStep);
+                    var dy = tf.r.d_rd_pos_y + (tl.r.d_rd_pos_y - tf.r.d_rd_pos_y) * (r1 / totalStep);
                     Logger.Debug("Tag: {0}\t \t X: {1}\tY: {2}\tZ: {3}", tf.a.MacAddress, x, y, z);
 
                     var tagid = Global.Tags.First(t => t.TagMacAddress == tf.a.MacAddress.GetLong().ToString()).Id;
@@ -127,6 +131,8 @@ namespace Comidat
                         XPosition = (int)x,
                         YPosition = (int)y,
                         ZPosition = (int)z,
+                        d_XPosition = (int)dx,//Two D
+                        d_yPosition = (int)dy,
                         TagId = tagid,
                         MapId = tf.r.MapId
                     });
@@ -166,7 +172,6 @@ namespace Comidat
         {
             Logger.Info(Localization.Get("Comidat.Program.ServerOnConnected.Info"), e.Client);
         }
-
 
         private static async Task Test()
         {
