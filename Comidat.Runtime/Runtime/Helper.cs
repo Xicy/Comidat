@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Comidat.Runtime
 {
-    public static class Helper
+    public static partial class Helper
     {
         /// <summary>
         ///     Calculate distance between router and client
