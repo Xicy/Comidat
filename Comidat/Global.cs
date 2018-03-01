@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Comidat.Data;
 using Comidat.Data.Model;
 using Comidat.Diagnostics;
+using Comidat.IO;
 using Comidat.Model;
 using Comidat.Runtime;
 
@@ -15,20 +18,31 @@ namespace Comidat
         static Global()
         {
             //TODO:Unutma !!!!!!
-            if((DateTime.Parse("01/04/2018") - DateTime.Now).Days < 0)
+            if ((DateTime.Parse("01/05/2018") - DateTime.Now).Days < 0)
                 Environment.Exit(-1);
 
             for (int i = 0; i < 101; i++)
                 Distances[i] = Helper.CalculateDistance(FSPL.MeterAndMegaHertz, i, 2412);
+
+            settings = new Dictionary<string, string>();
+            foreach (var setting in new FileReader(Path.Combine(Environment.CurrentDirectory, "settings.ini")))
+            {
+                var a = setting.Value.Split(new[] { '=' }, 2);
+                settings.Add(a[0].Trim().ToLowerInvariant(), a[1].Trim());
+            }
+
+            Database = new DatabaseContext(settings["database"]);
+            Tags = Database.TBLTags.ToArray();
         }
 
-        public static readonly DatabaseContext Database = new DatabaseContext();
+        private static Dictionary<string, string> settings;
+        public static DatabaseContext Database ;
 
         //public static readonly ConcurrentDictionary<MacAddress, object> Esps = new ConcurrentDictionary<MacAddress, object>();
         public static readonly ConcurrentDictionary<MacAddress, TBLReader> Readers =
             new ConcurrentDictionary<MacAddress, TBLReader>();
 
-        public static readonly TBLTag[] Tags = Database.TBLTags.ToArray();
+        public static readonly TBLTag[] Tags;
 
         public static readonly double[] Distances = new double[101];
         //private static readonly ConcurrentDictionary<MacAddress, ConcurrentQueue<ITag>> TBLTags = new ConcurrentDictionary<MacAddress, ConcurrentQueue<ITag>>();
