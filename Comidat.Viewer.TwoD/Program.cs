@@ -13,10 +13,6 @@ namespace Comidat
         [STAThread]
         static void Main()
         {
-            //TODO:Unutma !!!!!!
-            if ((DateTime.Parse("01/05/2018") - DateTime.Now).Days < 0)
-                Environment.Exit(-1);
-
             Logger.Archive = Path.Combine(Environment.CurrentDirectory, "Logs");
             Logger.LogFile = Path.Combine(Environment.CurrentDirectory, "Logs", "Comidat.Viewer.TwoD.log");
 

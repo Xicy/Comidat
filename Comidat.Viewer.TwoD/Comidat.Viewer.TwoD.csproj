@@ -147,6 +147,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Canvas.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Canvas.Designer.cs">
+      <DependentUpon>Canvas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,11 +178,21 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Canvas.resx">
+      <DependentUpon>Canvas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="..\Comidat.Data.Old\Comidat.Data.Old.projitems" Label="Shared" />
   <Import Project="..\Comidat.Util\Comidat.Util.projitems" Label="Shared" />
   <Import Project="..\Comidat.Embed\Comidat.Embed.projitems" Label="Shared" />
   <Import Project="..\Comidat.IO\Comidat.IO.projitems" Label="Shared" />
   <Import Project="..\Comidat.Runtime\Comidat.Runtime.projitems" Label="Shared" />
+  <Import Project="..\Comidat\Comidat.projitems" Label="Shared" />
+  <Import Project="..\Comidat.Model\Comidat.Model.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>$(SolutionDir)\packages\ConfuserEx.Final.1.0.0\tools\Confuser.CLI.exe  $(TargetDir)$(TargetFileName) -o $(TargetDir)\Confused</PostBuildEvent>

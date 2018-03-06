@@ -52,8 +52,10 @@ Global
 		Comidat.Data.Old\Comidat.Data.Old.projitems*{c60484e7-0d47-44d6-9893-5a2b3dde5d91}*SharedItemsImports = 4
 		Comidat.Embed\Comidat.Embed.projitems*{c60484e7-0d47-44d6-9893-5a2b3dde5d91}*SharedItemsImports = 4
 		Comidat.IO\Comidat.IO.projitems*{c60484e7-0d47-44d6-9893-5a2b3dde5d91}*SharedItemsImports = 4
+		Comidat.Model\Comidat.Model.projitems*{c60484e7-0d47-44d6-9893-5a2b3dde5d91}*SharedItemsImports = 4
 		Comidat.Runtime\Comidat.Runtime.projitems*{c60484e7-0d47-44d6-9893-5a2b3dde5d91}*SharedItemsImports = 4
 		Comidat.Util\Comidat.Util.projitems*{c60484e7-0d47-44d6-9893-5a2b3dde5d91}*SharedItemsImports = 4
+		Comidat\Comidat.projitems*{c60484e7-0d47-44d6-9893-5a2b3dde5d91}*SharedItemsImports = 4
 		Comidat.IO\Comidat.IO.projitems*{d0478288-50bf-4308-87bd-e080b3f37cb3}*SharedItemsImports = 13
 		Comidat.Data.Old\Comidat.Data.Old.projitems*{e6fe3f18-d0b8-4075-84ee-f346b394d941}*SharedItemsImports = 4
 		Comidat.Embed\Comidat.Embed.projitems*{e6fe3f18-d0b8-4075-84ee-f346b394d941}*SharedItemsImports = 4

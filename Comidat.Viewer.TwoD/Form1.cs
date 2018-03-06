@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Comidat.IO;
 using Comidat.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace Comidat
 {
@@ -14,9 +19,11 @@ namespace Comidat
         public Form1()
         {
             InitializeComponent();
+
             string[ /*Kat*/] map = new string[10];
-            Vector3d[/*Kat*/][/*Ayırım*/][/*Konum*/] lines = (Vector3d[][][])Array.CreateInstance(typeof(Vector3d), 10, 100, 100);
-            int floor = 0,lineSub = 0;
+            List<List<List<Vector3d>>> lines = new List<List<List<Vector3d>>>();
+
+            int floor = -1, lineSub = 0;
             fr = new FileReader(Path.Combine(Environment.CurrentDirectory, "map.data"));
             foreach (var line in fr)
             {
@@ -27,15 +34,38 @@ namespace Comidat
                  */
                 if (line.Value.StartsWith("map", true, CultureInfo.InvariantCulture))
                 {
-                    map[floor++] = line.Value;
+                    floor++;
+                    lines.Add(new List<List<Vector3d>>());
+                    map[floor] = line.Value;
                     lineSub = 0;
                 }
                 else
                 {
-
+                    var a = line.Value.Split(' ');
+                    lines[floor].Add(new List<Vector3d>());
+                    for (int i = 0; i < a.Length - 1; i += 2)
+                        lines[floor][lineSub].Add(new Vector3d(double.Parse(a[i]), double.Parse(a[i + 1]), 0));
                     lineSub++;
                 }
             }
+
+            var canvas = new Canvas(Image.FromFile(Path.Combine(Environment.CurrentDirectory, map[0])), lines[0]) { Dock = DockStyle.Fill };
+            Controls.Add(canvas);
+
+            Task.Run(async () =>
+            {
+                while (true)
+                {
+                    var tblPositions = Global.Database.TBLPositions.AsNoTracking().Where(position => position.RecordDateTime > DateTime.Now.AddMinutes(-10))
+                        .OrderByDescending(position => position.RecordDateTime).GroupBy(position => position.TagId)
+                        .Select(grouping => grouping.First());
+                    var a = tblPositions.ToArray();
+                    canvas.BeginInvoke((Action)(() => { canvas.UpdateTags(a); }));
+                    await Task.Delay(5000);
+                }
+            });
+
+
         }
     }
 }
