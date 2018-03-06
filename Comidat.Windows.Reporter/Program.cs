@@ -18,7 +18,7 @@ namespace Comidat
                 Environment.Exit(-1);
 
             Logger.Archive = Path.Combine(Environment.CurrentDirectory, "Logs");
-            Logger.LogFile = Path.Combine(Environment.CurrentDirectory, "Logs", "Comidat.Client.log");
+            Logger.LogFile = Path.Combine(Environment.CurrentDirectory, "Logs", "Comidat.Reporter.log");
 
             ExceptionHandler.InstallExceptionHandler();
 
