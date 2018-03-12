@@ -13,7 +13,7 @@ namespace Comidat
         public Canvas(Image floor, List<List<Vector3d>> route)
         {
             InitializeComponent();
-
+            SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
             this.route = route;
             this.floor = floor;
         }
@@ -31,9 +31,10 @@ namespace Comidat
 
         protected override void OnMouseMove(MouseEventArgs e)
         {
+            isDraging = isHold;
             if (isDraging)
             {
-                drag_delta = new Point(e.X - down.X, e.Y - down.Y);
+                drag_delta = new Point((int)((e.X - down.X) / scale), (int)((e.Y - down.Y) / scale));
                 UpdateStyles();
             }
 
@@ -43,25 +44,32 @@ namespace Comidat
         protected override void OnMouseDown(MouseEventArgs e)
         {
             down = e.Location;
-            isDraging = true;
+            isHold = true;
             base.OnMouseDown(e);
         }
 
         protected override void OnMouseUp(MouseEventArgs e)
         {
-            isDraging = false;
-            drag = new Point(drag.X + drag_delta.X, drag.Y + drag_delta.Y);
+            isHold = false;
+            if (isDraging)
+            {
+                drag = new Point(drag.X + drag_delta.X, drag.Y + drag_delta.Y);
+                isDraging = false;
+            }
+            else
             if (tags != null && tags.Length > 0)
+            {
+                var loc = new Point((int)(e.Location.X / scale), (int)(e.Location.Y / scale));
+
                 foreach (var tag in tags)
                 {
-                    var loc = (e.Location);
-                    if (new Rectangle(tag.d_XPosition, tag.d_yPosition, 7, 7).Contains(new Point(loc.X - drag.X, loc.Y - drag.Y)))
-                    {
-                        var ta = Global.Tags.FirstOrDefault(t => t.Id == tag.TagId);
-                        MessageBox.Show($"Isim:{ta.TagFirstName} \nSoyisim:{ta.TagLastName}\nTC:{ta.TagTCNo}\nTelefon:{ta.TagMobilTelephone}", "Çalışan Bilgisi", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                    if (!new Rectangle(tag.d_XPosition + drag.X - 3, tag.d_yPosition + drag.Y - 3, 7, 7).Contains(new Point(loc.X, loc.Y))) continue;
+                    var ta = Global.Tags.FirstOrDefault(t => t.Id == tag.TagId);
+                    if (ta == null) continue;
+                    MessageBox.Show($"Isim:{ta.TagFirstName} \nSoyisim:{ta.TagLastName}\nTC:{ta.TagTCNo}\nTelefon:{ta.TagMobilTelephone}", "Çalışan Bilgisi", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
+            }
+            UpdateStyles();
             base.OnMouseUp(e);
         }
 
@@ -73,6 +81,7 @@ namespace Comidat
         }
 
         private Point down = Point.Empty;
+        private bool isHold = false;
         private bool isDraging = false;
         private bool isDrawRoute = true;
         private Point drag_delta = new Point(0, 0);
@@ -118,7 +127,7 @@ namespace Comidat
                 foreach (var tag in tags)
                 {
                     CalculatePositionFromLine(tag);
-                    e.Graphics.DrawEllipse(Pens.OrangeRed, tag.d_XPosition, tag.d_yPosition, 7, 7);
+                    e.Graphics.DrawEllipse(Pens.OrangeRed, tag.d_XPosition - 3, tag.d_yPosition - 3, 7, 7);
                 }
         }
 

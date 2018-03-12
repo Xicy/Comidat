@@ -56,7 +56,8 @@ namespace Comidat
             {
                 while (true)
                 {
-                    var tblPositions = Global.Database.TBLPositions.AsNoTracking().Where(position => position.RecordDateTime > DateTime.Now.AddMinutes(-10))
+                    var tblPositions = Global.Database.TBLPositions.AsNoTracking()
+                        .Where(position => position.RecordDateTime > DateTime.Now.AddMinutes(-10))
                         .OrderByDescending(position => position.RecordDateTime).GroupBy(position => position.TagId)
                         .Select(grouping => grouping.First());
                     var a = tblPositions.ToArray();
