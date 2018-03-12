@@ -37,7 +37,20 @@ namespace Comidat
                 drag_delta = new Point((int)((e.X - down.X) / scale), (int)((e.Y - down.Y) / scale));
                 UpdateStyles();
             }
-
+            else
+            if (tags != null && tags.Length > 0)
+            {
+                var loc = new Point((int)(e.Location.X / scale), (int)(e.Location.Y / scale));
+                shownTag.Clear();
+                foreach (var tag in tags)
+                {
+                    if (!new Rectangle(tag.d_XPosition + drag.X - 3, tag.d_yPosition + drag.Y - 3, 7, 7).Contains(new Point(loc.X, loc.Y))) continue;
+                    var ta = Global.Tags.FirstOrDefault(t => t.Id == tag.TagId);
+                    if (ta == null) continue;
+                    shownTag.Add(ta);
+                }
+                if (shownTag.Count > 0) UpdateStyles();
+            }
             base.OnMouseMove(e);
         }
 
@@ -56,20 +69,6 @@ namespace Comidat
                 drag = new Point(drag.X + drag_delta.X, drag.Y + drag_delta.Y);
                 isDraging = false;
             }
-            else
-            if (tags != null && tags.Length > 0)
-            {
-                var loc = new Point((int)(e.Location.X / scale), (int)(e.Location.Y / scale));
-
-                foreach (var tag in tags)
-                {
-                    if (!new Rectangle(tag.d_XPosition + drag.X - 3, tag.d_yPosition + drag.Y - 3, 7, 7).Contains(new Point(loc.X, loc.Y))) continue;
-                    var ta = Global.Tags.FirstOrDefault(t => t.Id == tag.TagId);
-                    if (ta == null) continue;
-                    MessageBox.Show($"Isim:{ta.TagFirstName} \nSoyisim:{ta.TagLastName}\nTC:{ta.TagTCNo}\nTelefon:{ta.TagMobilTelephone}", "Çalışan Bilgisi", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            UpdateStyles();
             base.OnMouseUp(e);
         }
 
@@ -83,11 +82,11 @@ namespace Comidat
         private Point down = Point.Empty;
         private bool isHold = false;
         private bool isDraging = false;
-        private bool isDrawRoute = true;
+        private bool isDrawRoute = false;
         private Point drag_delta = new Point(0, 0);
         private Point drag = new Point(0, 0);
         private double scale = 1;
-
+        private List<TBLTag> shownTag = new List<TBLTag>();
         private Image floor;
         private TBLPosition[] tags;
         private List<List<Vector3d>> route;
@@ -128,6 +127,13 @@ namespace Comidat
                 {
                     CalculatePositionFromLine(tag);
                     e.Graphics.DrawEllipse(Pens.OrangeRed, tag.d_XPosition - 3, tag.d_yPosition - 3, 7, 7);
+                }
+            if (shownTag.Count > 0)
+                for (var i = 0; i < shownTag.Count; i++)
+                {
+                    var tag = shownTag[i];
+                    var tagLoc = tags.First(t => t.TagId == tag.Id);
+                    e.Graphics.DrawString($"{tag.TagFullName}", DefaultFont, Brushes.OrangeRed, tagLoc.d_XPosition - 3, tagLoc.d_yPosition - 3 - 12 * (i + 1));
                 }
         }
 
