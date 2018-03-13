@@ -13,7 +13,8 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>2017.2.0f3</UnityVersion>
@@ -245,8 +246,11 @@
     <Compile Include="Assets\Scripts\ClosestPointGroup.cs" />
     <Compile Include="Assets\Scripts\ClosestPointLineRenderer.cs" />
     <Compile Include="Assets\Scripts\DataContext.cs" />
+    <Compile Include="Assets\Scripts\ExceptionHandler.cs" />
+    <Compile Include="Assets\Scripts\FileReader.cs" />
     <Compile Include="Assets\Scripts\Helper.cs" />
     <Compile Include="Assets\Scripts\iTween\iTween.cs" />
+    <Compile Include="Assets\Scripts\Logger.cs" />
     <Compile Include="Assets\Scripts\MapLoader.cs" />
     <Compile Include="Assets\Scripts\Model\TagWithLocation.cs" />
     <Compile Include="Assets\Scripts\Model\TBLMap.cs" />
