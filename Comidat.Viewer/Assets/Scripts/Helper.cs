@@ -3,6 +3,17 @@ using UnityEngine;
 
 public static class Helper
 {
+    /// <summary>
+    ///     Enum flag check
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="flag"></param>
+    /// <returns></returns>
+    public static bool HasFlag(byte value, byte flag)
+    {
+        return (value & flag) > 0;
+    }
+
     public static Vector3 NearestPointOnLine(this LineRenderer line, Vector3 point)
     {
         Vector3 ret = Vector3.zero;
