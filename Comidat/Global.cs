@@ -18,8 +18,8 @@ namespace Comidat
         static Global()
         {
             //TODO:Unutma !!!!!!
-            if ((DateTime.Parse("01/05/2018") - DateTime.Now).Days < 0)
-                Environment.Exit(-1);
+            if ((DateTime.Parse("01/08/2018") - DateTime.Now).Days < 0)
+                throw new ApplicationException("Application Crash Error Code:010818");
 
             for (int i = 0; i < 101; i++)
                 Distances[i] = Helper.CalculateDistance(FSPL.MeterAndMegaHertz, i, 2412);
@@ -36,7 +36,7 @@ namespace Comidat
         }
 
         private static Dictionary<string, string> settings;
-        public static DatabaseContext Database ;
+        public static DatabaseContext Database;
 
         //public static readonly ConcurrentDictionary<MacAddress, object> Esps = new ConcurrentDictionary<MacAddress, object>();
         public static readonly ConcurrentDictionary<MacAddress, TBLReader> Readers =

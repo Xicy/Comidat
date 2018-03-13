@@ -13,14 +13,14 @@ namespace Comidat
         [STAThread]
         private static void Main()
         {
-            //TODO:Unutma !!!!!!
-            if ((DateTime.Parse("01/05/2018") - DateTime.Now).Days < 0)
-                Environment.Exit(-1);
-
             Logger.Archive = Path.Combine(Environment.CurrentDirectory, "Logs");
             Logger.LogFile = Path.Combine(Environment.CurrentDirectory, "Logs", "Comidat.Reporter.log");
 
             ExceptionHandler.InstallExceptionHandler();
+
+            //TODO:Unutma !!!!!!
+            if ((DateTime.Parse("01/08/2018") - DateTime.Now).Days < 0)
+                throw new ApplicationException("Application Crash Error Code:010818");
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
