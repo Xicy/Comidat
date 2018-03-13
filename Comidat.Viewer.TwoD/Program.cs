@@ -14,7 +14,7 @@ namespace Comidat
         static void Main()
         {
             Logger.Archive = Path.Combine(Environment.CurrentDirectory, "Logs");
-            Logger.LogFile = Path.Combine(Environment.CurrentDirectory, "Logs", "Comidat.Viewer.TwoD.log");
+            Logger.LogFile = Path.Combine(Environment.CurrentDirectory, "Logs", "Comidat.Viewer.2D.log");
 
             ExceptionHandler.InstallExceptionHandler();
 

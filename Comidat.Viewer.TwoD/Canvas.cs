@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -14,6 +15,8 @@ namespace Comidat
         {
             InitializeComponent();
             SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
+            comboBox1.DataSource = Global.Database.TBLTags.Local.ToBindingList();
+            comboBox1.DisplayMember = "TagFullName";
             this.route = route;
             this.floor = floor;
         }
@@ -87,6 +90,7 @@ namespace Comidat
         private Point drag = new Point(0, 0);
         private double scale = 1;
         private List<TBLTag> shownTag = new List<TBLTag>();
+        private TBLTag selectedTag = null;
         private Image floor;
         private TBLPosition[] tags;
         private List<List<Vector3d>> route;
@@ -126,7 +130,10 @@ namespace Comidat
                 foreach (var tag in tags)
                 {
                     CalculatePositionFromLine(tag);
-                    e.Graphics.DrawEllipse(Pens.OrangeRed, tag.d_XPosition - 3, tag.d_yPosition - 3, 7, 7);
+                    if (selectedTag != null && tag.TagId == selectedTag.Id)
+                        e.Graphics.DrawEllipse(new Pen(Color.YellowGreen,4), tag.d_XPosition - 3, tag.d_yPosition - 3, 8, 8);
+                    else
+                        e.Graphics.DrawEllipse(Pens.OrangeRed, tag.d_XPosition - 3, tag.d_yPosition - 3, 7, 7);
                 }
             if (shownTag.Count > 0)
                 for (var i = 0; i < shownTag.Count; i++)
@@ -155,5 +162,10 @@ namespace Comidat
             tag.d_yPosition = (int)lastPos.Y;
         }
 
+        private void comboBox1_SelectedValueChanged(object sender, System.EventArgs e)
+        {
+            selectedTag = (TBLTag)comboBox1.SelectedItem;
+            UpdateStyles();
+        }
     }
 }
