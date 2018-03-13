@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using Comidat.Data.Model;
+using Comidat.Diagnostics;
+using Comidat.IO;
 using UnityEngine;
 
 
@@ -11,14 +14,26 @@ public class DataContext : MonoBehaviour
     public static DataContext Instance;
 
     //private string _conString = @"Server=sql.lc;Database=ComidatOld;User ID=SA;Password=Umut1996;";
-    private string _conString = @"Server=.;Database=MinePts;User ID=sa;Password=comidat;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=True;";
+    //private string _conString = @"Server=.;Database=MinePts;User ID=sa;Password=comidat;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=True;";
     private SqlConnection _dbCon;
+    private static Dictionary<string, string> _settings;
 
     void Awake()
     {
+        Comidat.Diagnostics.Logger.Archive = Path.Combine(Environment.CurrentDirectory, "Logs");
+        Comidat.Diagnostics.Logger.LogFile = Path.Combine(Path.Combine(Environment.CurrentDirectory, "Logs"), "Comidat.Viewer.3D.log");
+        ExceptionHandler.InstallExceptionHandler();
+
+        _settings = new Dictionary<string, string>();
+        foreach (var setting in new FileReader(Path.Combine(Environment.CurrentDirectory, "settings.ini")))
+        {
+            var a = setting.Value.Split(new[] { '=' }, 2);
+            _settings.Add(a[0].Trim().ToLowerInvariant(), a[1].Trim());
+        }
+
         //TODO:Unutma !!!!!!
-        if ((DateTime.Parse("05/01/2018") - DateTime.Now).Days < 0)
-            Application.Quit();
+        if ((DateTime.Parse("08/01/2018") - DateTime.Now).Days < 0)
+            throw new ApplicationException("Application Crash Error Code:010818");
 
         if (Instance == null)
             Instance = this;
@@ -27,7 +42,7 @@ public class DataContext : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
-        _dbCon = new SqlConnection(_conString);
+        _dbCon = new SqlConnection(_settings["database"]);
     }
 
     public SqlDataReader Query(string query)
