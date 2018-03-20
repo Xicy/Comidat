@@ -23,19 +23,19 @@ namespace Comidat
 
             for (int i = 0; i < 101; i++)
                 Distances[i] = Helper.CalculateDistance(FSPL.MeterAndMegaHertz, i, 2412);
-
+            /*
             settings = new Dictionary<string, string>();
             foreach (var setting in new FileReader(Path.Combine(Environment.CurrentDirectory, "settings.ini")))
             {
                 var a = setting.Value.Split(new[] { '=' }, 2);
                 settings.Add(a[0].Trim().ToLowerInvariant(), a[1].Trim());
             }
-
-            Database = new DatabaseContext(settings["database"]);
+            */
+            Database = new DatabaseContext();//(settings["database"]);
             Tags = Database.TBLTags.ToArray();
         }
 
-        private static Dictionary<string, string> settings;
+        //private static Dictionary<string, string> settings;
         public static DatabaseContext Database;
 
         //public static readonly ConcurrentDictionary<MacAddress, object> Esps = new ConcurrentDictionary<MacAddress, object>();

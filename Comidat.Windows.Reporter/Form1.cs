@@ -23,14 +23,7 @@ namespace Comidat
         {
             InitializeComponent();
 
-            var settings = new Dictionary<string, string>();
-            foreach (var setting in new FileReader(Path.Combine(Environment.CurrentDirectory, "settings.ini")))
-            {
-                var a = setting.Value.Split(new[] { '=' }, 2);
-                settings.Add(a[0].Trim().ToLowerInvariant(), a[1].Trim());
-            }
-
-            _database = new DatabaseContext(settings["database"]);
+            _database = Global.Database;
 
             _baseFont = FontFactory.GetFont(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "arial.ttf"), "Cp1254", true, 12, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
             _baseFontBold = FontFactory.GetFont(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "arial.ttf"), "Cp1254", true, 12, iTextSharp.text.Font.BOLD, BaseColor.BLACK);
