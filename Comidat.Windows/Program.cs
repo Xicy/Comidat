@@ -23,7 +23,7 @@ namespace Comidat
         private static void Main()
         {
             ExceptionHandler.InstallExceptionHandler();
-
+            Helper.AddFireWall();
             var sw = new Stopwatch();
             sw.Start();
             Console.CursorVisible = false;
