@@ -188,6 +188,8 @@
   <Import Project="..\Comidat.IO\Comidat.IO.projitems" Label="Shared" />
   <Import Project="..\Comidat.Runtime\Comidat.Runtime.projitems" Label="Shared" />
   <Import Project="..\Comidat.Embed\Comidat.Embed.projitems" Label="Shared" />
+  <Import Project="..\Comidat\Comidat.projitems" Label="Shared" />
+  <Import Project="..\Comidat.Model\Comidat.Model.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>$(SolutionDir)\packages\ConfuserEx.Final.1.0.0\tools\Confuser.CLI.exe  $(TargetDir)$(TargetFileName) -o $(TargetDir)\Confused</PostBuildEvent>
