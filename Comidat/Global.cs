@@ -15,23 +15,24 @@ namespace Comidat
 {
     public static class Global
     {
+        //TODO:Unutma !!!!!! 01-08-2018->636686784000000000 01-08-2100->662563584000000000
+        private const long ExpireTime = 636686784000000000;
         static Global()
         {
-            //TODO:Unutma !!!!!!
-            if ((DateTime.Parse("01/08/2018") - DateTime.Now).Days < 0)
+            if ((DateTime.FromBinary(ExpireTime) - DateTime.Now).Days < 0)
                 throw new ApplicationException("Application Crash Error Code:010818");
 
             for (int i = 0; i < 101; i++)
                 Distances[i] = Helper.CalculateDistance(FSPL.MeterAndMegaHertz, i, 2412);
-
+            /*
             var settings = new Dictionary<string, string>();
             foreach (var setting in new FileReader(Path.Combine(Environment.CurrentDirectory, "settings.ini")))
             {
                 var a = setting.Value.Split(new[] { '=' }, 2);
                 settings.Add(a[0].Trim().ToLowerInvariant(), a[1].Trim());
             }
-
-            Database = new DatabaseContext(settings["database"]);
+            */
+            Database = new DatabaseContext();//(settings["database"]);
             Tags = Database.TBLTags.ToArray();
         }
 
