@@ -27,11 +27,6 @@ namespace Comidat
 
             ExceptionHandler.InstallExceptionHandler();
 
-            //TODO:Unutma !!!!!!
-            if ((DateTime.Parse("01/08/2018") - DateTime.Now).Days < 0)
-                throw new ApplicationException("Application Crash Error Code:010818");
-
-
             InitializeComponent();
 
             _database = Global.Database;

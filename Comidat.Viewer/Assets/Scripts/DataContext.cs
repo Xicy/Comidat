@@ -17,7 +17,8 @@ public class DataContext : MonoBehaviour
     //private string _conString = @"Server=.;Database=MinePts;User ID=sa;Password=comidat;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=True;";
     private SqlConnection _dbCon;
     private static Dictionary<string, string> _settings;
-
+    //TODO:Unutma !!!!!! 01-08-2018->636686784000000000 01-08-2100->662563584000000000
+    private const long ExpireTime = 636686784000000000;
     void Awake()
     {
         Comidat.Diagnostics.Logger.Archive = Path.Combine(Environment.CurrentDirectory, "Logs");
@@ -31,8 +32,7 @@ public class DataContext : MonoBehaviour
             _settings.Add(a[0].Trim().ToLowerInvariant(), a[1].Trim());
         }
 
-        //TODO:Unutma !!!!!!
-        if ((DateTime.Parse("08/01/2018") - DateTime.Now).Days < 0)
+        if ((DateTime.FromBinary(ExpireTime) - DateTime.Now).Days < 0)
             throw new ApplicationException("Application Crash Error Code:010818");
 
         if (Instance == null)
