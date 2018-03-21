@@ -13,11 +13,6 @@ namespace Comidat
         [STAThread]
         static void Main()
         {
-            Logger.Archive = Path.Combine(Environment.CurrentDirectory, "Logs");
-            Logger.LogFile = Path.Combine(Environment.CurrentDirectory, "Logs", "Comidat.Viewer.2D.log");
-
-            ExceptionHandler.InstallExceptionHandler();
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());

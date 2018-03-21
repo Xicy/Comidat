@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Comidat.Diagnostics;
 using Comidat.IO;
 using Comidat.Model;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +17,11 @@ namespace Comidat
     {
         public Form1()
         {
+            Logger.Archive = Path.Combine(Environment.CurrentDirectory, "Logs");
+            Logger.LogFile = Path.Combine(Environment.CurrentDirectory, "Logs", "Comidat.Viewer.2D.log");
+
+            ExceptionHandler.InstallExceptionHandler();
+
             InitializeComponent();
 
             string[ /*Kat*/] map = new string[10];

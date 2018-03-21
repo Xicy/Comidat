@@ -4,9 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Comidat.Data;
+using Comidat.Diagnostics;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Microsoft.EntityFrameworkCore;
+
 // ReSharper disable AccessToDisposedClosure
 
 namespace Comidat
@@ -20,6 +22,16 @@ namespace Comidat
 
         public Form1()
         {
+            Logger.Archive = Path.Combine(Environment.CurrentDirectory, "Logs");
+            Logger.LogFile = Path.Combine(Environment.CurrentDirectory, "Logs", "Comidat.Reporter.log");
+
+            ExceptionHandler.InstallExceptionHandler();
+
+            //TODO:Unutma !!!!!!
+            if ((DateTime.Parse("01/08/2018") - DateTime.Now).Days < 0)
+                throw new ApplicationException("Application Crash Error Code:010818");
+
+
             InitializeComponent();
 
             _database = Global.Database;
