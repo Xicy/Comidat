@@ -31,13 +31,14 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.1")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.1.0")]
+[assembly: AssemblyFileVersion("1.0.1.0")]
 
 [assembly: Obfuscation(Exclude = false, Feature = "strong name key:../../Comidat.snk")]
-[assembly: Obfuscation(Exclude = false, Feature = "+constants")]
+//[assembly: Obfuscation(Exclude = false, Feature = "+constants")] //Deteced by antivirus
 [assembly: Obfuscation(Exclude = false, Feature = "+anti ildasm")]
 [assembly: Obfuscation(Exclude = false, Feature = "+anti debug")]
 //[assembly: Obfuscation(Exclude = false, Feature = "+resources(mode=dynamic)")] //Deteced by antivirus
+[assembly: Obfuscation(Exclude = false, Feature = "-anti tamper")]
 [assembly: Obfuscation(Exclude = false, Feature = "+ctrl flow(predicate=expression)")]
 [assembly: Obfuscation(Exclude = false, Feature = "+rename(mode=reversible,password=Umut1996)")]
