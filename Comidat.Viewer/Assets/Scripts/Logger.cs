@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.IO;
 
 namespace Comidat.Diagnostics
@@ -53,10 +52,12 @@ namespace Comidat.Diagnostics
                 {
                     var pathToFile = Path.GetDirectoryName(value);
 
-                    if (!Directory.Exists(pathToFile))
-                        if (!string.IsNullOrEmpty(pathToFile))
+                    if (!string.IsNullOrEmpty(pathToFile))
+                    {
+                        if (!Directory.Exists(pathToFile))
                             Directory.CreateDirectory(pathToFile);
-                        else
+                    }
+                    else
                             throw new ArgumentNullException();
 
                     if (File.Exists(value))

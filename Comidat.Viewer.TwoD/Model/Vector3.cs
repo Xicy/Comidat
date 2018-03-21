@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-
+// ReSharper disable NonReadonlyMemberInGetHashCode
 namespace Comidat.Model
 {
     [Serializable]
@@ -78,9 +78,9 @@ namespace Comidat.Model
         [Obsolete("Use static Add() method instead.")]
         public void Add(Vector3d right)
         {
-            this.X += right.X;
-            this.Y += right.Y;
-            this.Z += right.Z;
+            X += right.X;
+            Y += right.Y;
+            Z += right.Z;
         }
 
         /// <summary>Add the Vector passed as parameter to this instance.</summary>
@@ -89,9 +89,9 @@ namespace Comidat.Model
         [Obsolete("Use static Add() method instead.")]
         public void Add(ref Vector3d right)
         {
-            this.X += right.X;
-            this.Y += right.Y;
-            this.Z += right.Z;
+            X += right.X;
+            Y += right.Y;
+            Z += right.Z;
         }
 
         #endregion public void Add()
@@ -103,9 +103,9 @@ namespace Comidat.Model
         [Obsolete("Use static Subtract() method instead.")]
         public void Sub(Vector3d right)
         {
-            this.X -= right.X;
-            this.Y -= right.Y;
-            this.Z -= right.Z;
+            X -= right.X;
+            Y -= right.Y;
+            Z -= right.Z;
         }
 
         /// <summary>Subtract the Vector passed as parameter from this instance.</summary>
@@ -114,9 +114,9 @@ namespace Comidat.Model
         [Obsolete("Use static Subtract() method instead.")]
         public void Sub(ref Vector3d right)
         {
-            this.X -= right.X;
-            this.Y -= right.Y;
-            this.Z -= right.Z;
+            X -= right.X;
+            Y -= right.Y;
+            Z -= right.Z;
         }
 
         #endregion public void Sub()
@@ -128,9 +128,9 @@ namespace Comidat.Model
         [Obsolete("Use static Multiply() method instead.")]
         public void Mult(double f)
         {
-            this.X *= f;
-            this.Y *= f;
-            this.Z *= f;
+            X *= f;
+            Y *= f;
+            Z *= f;
         }
 
         #endregion public void Mult()
@@ -143,9 +143,9 @@ namespace Comidat.Model
         public void Div(double f)
         {
             double mult = 1.0 / f;
-            this.X *= mult;
-            this.Y *= mult;
-            this.Z *= mult;
+            X *= mult;
+            Y *= mult;
+            Z *= mult;
         }
 
         #endregion public void Div()
@@ -155,13 +155,12 @@ namespace Comidat.Model
         /// <summary>
         /// Gets the length (magnitude) of the vector.
         /// </summary>
-        /// <see cref="LengthFast"/>
         /// <seealso cref="LengthSquared"/>
         public double Length
         {
             get
             {
-                return System.Math.Sqrt(X * X + Y * Y + Z * Z);
+                return Math.Sqrt(X * X + Y * Y + Z * Z);
             }
         }
 
@@ -178,7 +177,6 @@ namespace Comidat.Model
         /// for comparisons.
         /// </remarks>
         /// <see cref="Length"/>
-        /// <seealso cref="LengthFast"/>
         public double LengthSquared
         {
             get
@@ -196,7 +194,7 @@ namespace Comidat.Model
         /// </summary>
         public void Normalize()
         {
-            double scale = 1.0 / this.Length;
+            double scale = 1.0 / Length;
             X *= scale;
             Y *= scale;
             Z *= scale;
@@ -215,9 +213,9 @@ namespace Comidat.Model
         [Obsolete("Use static Multiply() method instead.")]
         public void Scale(double sx, double sy, double sz)
         {
-            this.X = X * sx;
-            this.Y = Y * sy;
-            this.Z = Z * sz;
+            X = X * sx;
+            Y = Y * sy;
+            Z = Z * sz;
         }
 
         /// <summary>Scales this instance by the given parameter.</summary>
@@ -225,9 +223,9 @@ namespace Comidat.Model
         [Obsolete("Use static Multiply() method instead.")]
         public void Scale(Vector3d scale)
         {
-            this.X *= scale.X;
-            this.Y *= scale.Y;
-            this.Z *= scale.Z;
+            X *= scale.X;
+            Y *= scale.Y;
+            Z *= scale.Z;
         }
 
         /// <summary>Scales this instance by the given parameter.</summary>
@@ -236,9 +234,9 @@ namespace Comidat.Model
         [Obsolete("Use static Multiply() method instead.")]
         public void Scale(ref Vector3d scale)
         {
-            this.X *= scale.X;
-            this.Y *= scale.Y;
-            this.Z *= scale.Z;
+            X *= scale.X;
+            Y *= scale.Y;
+            Z *= scale.Z;
         }
 
         #endregion public void Scale()
@@ -1014,7 +1012,7 @@ namespace Comidat.Model
             if (!(obj is Vector3d))
                 return false;
 
-            return this.Equals((Vector3d)obj);
+            return Equals((Vector3d)obj);
         }
 
         #endregion
@@ -1031,9 +1029,9 @@ namespace Comidat.Model
         public bool Equals(Vector3d other)
         {
             return
-                X == other.X &&
-                Y == other.Y &&
-                Z == other.Z;
+                Math.Abs(X - other.X) < 0.1 &&
+                Math.Abs(Y - other.Y) < 0.1 &&
+                Math.Abs(Z - other.Z) < 0.1;
         }
 
         #endregion

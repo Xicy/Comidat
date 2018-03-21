@@ -24,7 +24,7 @@ namespace Comidat
             for (int i = 0; i < 101; i++)
                 Distances[i] = Helper.CalculateDistance(FSPL.MeterAndMegaHertz, i, 2412);
 
-            settings = new Dictionary<string, string>();
+            var settings = new Dictionary<string, string>();
             foreach (var setting in new FileReader(Path.Combine(Environment.CurrentDirectory, "settings.ini")))
             {
                 var a = setting.Value.Split(new[] { '=' }, 2);
@@ -35,8 +35,7 @@ namespace Comidat
             Tags = Database.TBLTags.ToArray();
         }
 
-        private static Dictionary<string, string> settings;
-        public static DatabaseContext Database;
+        public static readonly DatabaseContext Database;
 
         //public static readonly ConcurrentDictionary<MacAddress, object> Esps = new ConcurrentDictionary<MacAddress, object>();
         public static readonly ConcurrentDictionary<MacAddress, TBLReader> Readers =

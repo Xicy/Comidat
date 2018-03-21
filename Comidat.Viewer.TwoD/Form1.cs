@@ -14,8 +14,6 @@ namespace Comidat
 {
     public partial class Form1 : Form
     {
-        private FileReader fr;
-
         public Form1()
         {
             InitializeComponent();
@@ -24,7 +22,7 @@ namespace Comidat
             List<List<List<Vector3d>>> lines = new List<List<List<Vector3d>>>();
 
             int floor = -1, lineSub = 0;
-            fr = new FileReader(Path.Combine(Environment.CurrentDirectory, "map.data"));
+            var fr = new FileReader(Path.Combine(Environment.CurrentDirectory, "map.data"));
             foreach (var line in fr)
             {
                 /*

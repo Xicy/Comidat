@@ -19,7 +19,7 @@ namespace Comidat.Runtime
                 var start = arr[i - 1];
 
                 var ps = point - start;
-                var norm = (Vector3d)(end - start);
+                var norm = (end - start);
                 double leng = norm.Length;
                 norm.Normalize();
                 double dot = Vector3d.Dot(norm, ps);

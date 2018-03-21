@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Comidat.Data;
-using Comidat.IO;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Microsoft.EntityFrameworkCore;
+// ReSharper disable AccessToDisposedClosure
 
 namespace Comidat
 {

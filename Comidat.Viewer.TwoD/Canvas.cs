@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -17,130 +16,131 @@ namespace Comidat
             SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
             comboBox1.DataSource = Global.Database.TBLTags.Local.ToBindingList();
             comboBox1.DisplayMember = "TagFullName";
-            this.route = route;
-            this.floor = floor;
+            _route = route;
+            _floor = floor;
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            e.Graphics.ScaleTransform((float)scale, (float)scale);
+            e.Graphics.ScaleTransform((float)_scale, (float)_scale);
             e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-            if (isDraging)
-                e.Graphics.TranslateTransform(drag.X + drag_delta.X, drag.Y + drag_delta.Y);
+            if (_isDraging)
+                e.Graphics.TranslateTransform(_drag.X + _dragDelta.X, _drag.Y + _dragDelta.Y);
             else
-                e.Graphics.TranslateTransform(drag.X, drag.Y);
+                e.Graphics.TranslateTransform(_drag.X, _drag.Y);
             base.OnPaint(e);
         }
 
         protected override void OnMouseMove(MouseEventArgs e)
         {
-            isDraging = isHold;
-            if (isDraging)
+            _isDraging = _isHold;
+            if (_isDraging)
             {
-                drag_delta = new Point((int)((e.X - down.X) / scale), (int)((e.Y - down.Y) / scale));
+                _dragDelta = new Point((int)((e.X - _down.X) / _scale), (int)((e.Y - _down.Y) / _scale));
                 UpdateStyles();
             }
             else
-            if (tags != null && tags.Length > 0)
+            if (_tags != null && _tags.Length > 0)
             {
-                var loc = new Point((int)(e.Location.X / scale), (int)(e.Location.Y / scale));
-                shownTag.Clear();
-                foreach (var tag in tags)
+                var loc = new Point((int)(e.Location.X / _scale), (int)(e.Location.Y / _scale));
+                _shownTag.Clear();
+                foreach (var tag in _tags)
                 {
-                    if (!new Rectangle(tag.d_XPosition + drag.X - 3, tag.d_yPosition + drag.Y - 3, 7, 7).Contains(new Point(loc.X, loc.Y))) continue;
+                    if (!new Rectangle(tag.d_XPosition + _drag.X - 3, tag.d_yPosition + _drag.Y - 3, 7, 7).Contains(new Point(loc.X, loc.Y))) continue;
                     var ta = Global.Tags.FirstOrDefault(t => t.Id == tag.TagId);
                     if (ta == null) continue;
-                    shownTag.Add(ta);
+                    _shownTag.Add(ta);
                 }
-                if (shownTag.Count > 0) UpdateStyles();
+                if (_shownTag.Count > 0) UpdateStyles();
             }
             base.OnMouseMove(e);
         }
 
         protected override void OnMouseDown(MouseEventArgs e)
         {
-            down = e.Location;
-            isHold = true;
+            _down = e.Location;
+            _isHold = true;
             base.OnMouseDown(e);
         }
 
         protected override void OnMouseUp(MouseEventArgs e)
         {
-            isHold = false;
-            if (isDraging)
+            _isHold = false;
+            if (_isDraging)
             {
-                drag = new Point(drag.X + drag_delta.X, drag.Y + drag_delta.Y);
-                isDraging = false;
+                _drag = new Point(_drag.X + _dragDelta.X, _drag.Y + _dragDelta.Y);
+                _isDraging = false;
             }
             base.OnMouseUp(e);
         }
 
         protected override void OnMouseWheel(MouseEventArgs e)
         {
-            scale = e.Delta > 0 ? scale * 1.1 : scale / 1.1;
+            _scale = e.Delta > 0 ? _scale * 1.1 : _scale / 1.1;
             UpdateStyles();
             base.OnMouseWheel(e);
         }
 
-        private Point down = Point.Empty;
-        private bool isHold = false;
-        private bool isDraging = false;
-        private bool isDrawRoute = false;
-        private Point drag_delta = new Point(0, 0);
-        private Point drag = new Point(0, 0);
-        private double scale = 1;
-        private List<TBLTag> shownTag = new List<TBLTag>();
-        private TBLTag selectedTag = null;
-        private Image floor;
-        private TBLPosition[] tags;
-        private List<List<Vector3d>> route;
+        private Point _down = Point.Empty;
+        private bool _isHold;
+        private bool _isDraging;
+        private bool _isDrawRoute = false;
+        private Point _dragDelta = new Point(0, 0);
+        private Point _drag = new Point(0, 0);
+        private double _scale = 1;
+        private readonly List<TBLTag> _shownTag = new List<TBLTag>();
+        private TBLTag _selectedTag;
+        private Image _floor;
+        private TBLPosition[] _tags;
+        private List<List<Vector3d>> _route;
 
         public void UpdateTags(TBLPosition[] tags)
         {
-            this.tags = tags;
+            _tags = tags;
             UpdateStyles();
         }
 
         public void UpdateRoute(List<List<Vector3d>> route)
         {
-            this.route = route;
+            _route = route;
             UpdateStyles();
         }
 
         public void UpdateImage(Image image)
         {
-            this.floor = image;
+            _floor = image;
             UpdateStyles();
         }
 
         private void Canvas_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawImageUnscaled(floor, Point.Empty);
+            e.Graphics.DrawImageUnscaled(_floor, Point.Empty);
 
-            if (isDrawRoute)
-                for (int i = 0; i < route.Count; i++)
+            if (_isDrawRoute)
+                for (int i = 0; i < _route.Count; i++)
                 {
-                    for (int j = 0; j < route[i].Count - 1; j++)
+                    for (int j = 0; j < _route[i].Count - 1; j++)
                     {
-                        e.Graphics.DrawLine(Pens.Red, (float)route[i][j].X, (float)route[i][j].Y, (float)route[i][j + 1].X, (float)route[i][j + 1].Y);
+                        e.Graphics.DrawLine(Pens.Red, (float)_route[i][j].X, (float)_route[i][j].Y, (float)_route[i][j + 1].X, (float)_route[i][j + 1].Y);
                     }
                 }
 
-            if (tags != null)
-                foreach (var tag in tags)
+            if (_tags != null)
+                foreach (var tag in _tags)
                 {
                     CalculatePositionFromLine(tag);
-                    if (selectedTag != null && tag.TagId == selectedTag.Id)
-                        e.Graphics.DrawEllipse(new Pen(Color.YellowGreen,4), tag.d_XPosition - 3, tag.d_yPosition - 3, 8, 8);
+                    if (_selectedTag != null && tag.TagId == _selectedTag.Id)
+                        e.Graphics.DrawEllipse(new Pen(Color.YellowGreen, 4), tag.d_XPosition - 3, tag.d_yPosition - 3, 8, 8);
                     else
                         e.Graphics.DrawEllipse(Pens.OrangeRed, tag.d_XPosition - 3, tag.d_yPosition - 3, 7, 7);
                 }
-            if (shownTag.Count > 0)
-                for (var i = 0; i < shownTag.Count; i++)
+            if (_shownTag.Count > 0)
+                for (var i = 0; i < _shownTag.Count; i++)
                 {
-                    var tag = shownTag[i];
-                    var tagLoc = tags.First(t => t.TagId == tag.Id);
-                    e.Graphics.DrawString($"{tag.TagFullName}", DefaultFont, Brushes.OrangeRed, tagLoc.d_XPosition - 3, tagLoc.d_yPosition - 3 - 12 * (i + 1));
+                    var tag = _shownTag[i];
+                    var tagLoc = _tags?.First(t => t.TagId == tag.Id);
+                    if (tagLoc != null)
+                        e.Graphics.DrawString($"{tag.TagFullName}", DefaultFont, Brushes.OrangeRed, tagLoc.d_XPosition - 3, tagLoc.d_yPosition - 3 - 12 * (i + 1));
                 }
         }
 
@@ -152,7 +152,7 @@ namespace Comidat
 
             var pos = new Vector3d(tag.d_XPosition, tag.d_yPosition, 0);
 
-            foreach (var rot in route)
+            foreach (var rot in _route)
             {
                 currPos = Runtime.Helper.NearestPointOnLine(rot.ToArray(), pos);
                 if (lastLen > (lastLen = Vector3d.Subtract(currPos, pos).Length))
@@ -164,7 +164,7 @@ namespace Comidat
 
         private void comboBox1_SelectedValueChanged(object sender, System.EventArgs e)
         {
-            selectedTag = (TBLTag)comboBox1.SelectedItem;
+            _selectedTag = (TBLTag)comboBox1.SelectedItem;
             UpdateStyles();
         }
     }
