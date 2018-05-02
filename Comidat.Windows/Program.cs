@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Comidat.Data.Model;
@@ -29,6 +30,7 @@ namespace Comidat
             Console.CursorVisible = false;
             Cli.WriteHeader(Localization.Get("Title"), Localization.Get("Header"), ConsoleColor.Red);
             Cli.LoadingTitle();
+            Logger.Info(Localization.Get("LogInfo"), Assembly.GetEntryAssembly().GetName(), Environment.Version, Environment.OSVersion, Environment.Is64BitOperatingSystem, Environment.MachineName);
             Logger.Progress(0, ProgressStep);
 
             //Logger Settings Up
@@ -41,13 +43,9 @@ namespace Comidat
             //Logger.Hide ^= LogLevel.Debug;
             Logger.Progress(2, ProgressStep);
 
-            //Settings up server 
-            IServer server = new TCP();
-            server.Connected += ServerOnConnected;
-            server.Disconnected += ServerOnDisconnected;
-            server.MessageReceived += ServerOnMessageReceived;
-            server.StartAsync(new IPEndPoint(IPAddress.Any, 5757));
+            Global.LoadReaders();
             Logger.Progress(3, ProgressStep);
+            //Global.SeedForTestFromFile();
 
             //Settings up Database
             //Global.Database.Database.Migrate();
@@ -59,10 +57,13 @@ namespace Comidat
             //Global.Database.SaveChanges();
             Logger.Progress(5, ProgressStep);
 
-            Global.LoadReaders();
+            //Settings up server 
+            IServer server = new TCP();
+            server.Connected += ServerOnConnected;
+            server.Disconnected += ServerOnDisconnected;
+            server.MessageReceived += ServerOnMessageReceived;
+            server.StartAsync(new IPEndPoint(IPAddress.Any, 5757));
             Logger.Progress(6, ProgressStep);
-
-            //Global.SeedForTestFromFile();
 
             Logger.Progress(ProgressStep, ProgressStep);
             Logger.Info(Localization.Get("Comidat.Program.MainB.LoadingTime"), sw.ElapsedMilliseconds);
@@ -91,7 +92,6 @@ namespace Comidat
             );
             try
             {
-
                 var readers = r0.Take(2).ToArray();
                 if (readers.Length == 1)
                 {

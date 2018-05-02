@@ -1,6 +1,7 @@
 ﻿//Namespace.Class.Method.
 
 
+LogInfo	\n{0}\nDot.Net Versions: {1}\nIs 64bit: {3}\nOs Version: {2}\nMachine Name: {4}
 True	Açık
 False	Kapalı
 
