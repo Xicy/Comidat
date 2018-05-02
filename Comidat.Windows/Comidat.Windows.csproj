@@ -148,7 +148,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="FodyWeavers.xml" />
+    <None Include="FodyWeavers.xml">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
@@ -164,6 +166,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Comidat.ico" />
+    <Content Include="Costura32\advapi32.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Costura64\" />
   </ItemGroup>
   <Import Project="..\Comidat\Comidat.projitems" Label="Shared" />
   <Import Project="..\Comidat.Net\Comidat.Net.projitems" Label="Shared" />

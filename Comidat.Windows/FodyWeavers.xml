@@ -1,4 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Weavers>
-  <Costura DisableCleanup='true'/>
+  <Costura DisableCleanup='true'>
+    <Unmanaged32Assemblies>
+      advapi32
+    </Unmanaged32Assemblies>
+  </Costura>
 </Weavers>
