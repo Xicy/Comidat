@@ -31,7 +31,7 @@ namespace Comidat
             Cli.WriteHeader(Localization.Get("Title"), Localization.Get("Header"), ConsoleColor.Red);
             Cli.LoadingTitle();
             Logger.Progress(0, ProgressStep);
-
+    
             //Logger Settings Up
             Logger.Archive = Path.Combine(Environment.CurrentDirectory, "Logs");
             Logger.LogFile = Path.Combine(Environment.CurrentDirectory, "Logs", "Comidat.log");

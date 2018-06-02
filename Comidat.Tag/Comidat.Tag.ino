@@ -2,12 +2,12 @@
 
 const String macId = WiFi.macAddress();
 const int tagId = ESP.getChipId() & 0xFF;
-const char* wifiSSID = "AKKAYA-Windows";
+const char* wifiSSID = "AKKAYA";
 const char* wifiPassword = "Akkaya1996";
-IPAddress serverIP(192, 168, 137, 1);
+IPAddress serverIP(192,168,1,24);
 uint16_t  serverPort = 5757;
 
-IPAddress ip(192, 168, 137, tagId);
+IPAddress ip(192, 168, 1, tagId);
 IPAddress gateway(192, 168, 1, 1);
 IPAddress subnet(255, 255, 255, 0);
 IPAddress dns(192, 168, 1, 1);
@@ -68,7 +68,7 @@ void SendData() {
 	//if (now - lastMsg < 500) return; lastMsg = now;
 	networksCount = WiFi.scanNetworks(false, true);
 	gon = "";
-	for (int i = 0; i < networksCount; ++i)
+	for (int i = 0; i < networksCount && i<20; ++i)
 	{
 		gon += ";";
 		gon += WiFi.RSSI(i);
