@@ -92,7 +92,7 @@ namespace Comidat.Net
         public Task StopAsync()
         {
             //stop server
-            _server.Stop();
+            CancellationTokenSource.CreateLinkedTokenSource(_cancellationToken).Cancel();
             // for async task 
             return null;
         }
@@ -119,25 +119,35 @@ namespace Comidat.Net
             var state = (StateObject) ar.AsyncState;
             //socket for handle message
             var handler = state.Socket;
-            // get received bytes 
-            var bytesRead = handler.EndReceive(ar);
-
-            //byte if bigger than 0 client is alive not server clossed 
-            if (bytesRead > 0)
+            try
             {
-                //clone buffer object for resize the event args
-                var dt = state.Buffer;
-                //resize array for sending event args
-                Array.Resize(ref dt, bytesRead);
-                //trigger message received event arg with message
-                MessageReceived?.Invoke(this, new MessageReceivedEventArgs(state.Id, dt));
-                //continue reveceive message 
-                handler.BeginReceive(state.Buffer, 0, StateObject.BufferSize, 0, Receive, state);
+                // get received bytes 
+                var bytesRead = handler.EndReceive(ar);
+
+                //byte if bigger than 0 client is alive not server clossed 
+                if (bytesRead > 0)
+                {
+                    //clone buffer object for resize the event args
+                    var dt = state.Buffer;
+                    //resize array for sending event args
+                    Array.Resize(ref dt, bytesRead);
+                    //trigger message received event arg with message
+                    MessageReceived?.Invoke(this, new MessageReceivedEventArgs(state.Id, dt));
+                    //continue reveceive message 
+                    handler.BeginReceive(state.Buffer, 0, StateObject.BufferSize, 0, Receive, state);
+                }
+                else
+                {
+                    //trigger disconnected client 
+                    Disconnected?.Invoke(this, new DisconnectedEventArgs(state.Id));
+                }
             }
-            else
+            catch (Exception ex)
             {
                 //trigger disconnected client 
                 Disconnected?.Invoke(this, new DisconnectedEventArgs(state.Id));
+                Logger.Exception(ex, Localization.Get("Comidat.Controller.Server.TCP.StartAsync.Exception"),
+                    ex.Message);
             }
         }
 

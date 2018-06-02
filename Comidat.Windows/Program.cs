@@ -30,12 +30,12 @@ namespace Comidat
             Console.CursorVisible = false;
             Cli.WriteHeader(Localization.Get("Title"), Localization.Get("Header"), ConsoleColor.Red);
             Cli.LoadingTitle();
-            Logger.Info(Localization.Get("LogInfo"), Assembly.GetEntryAssembly().GetName(), Environment.Version, Environment.OSVersion, Environment.Is64BitOperatingSystem, Environment.MachineName);
             Logger.Progress(0, ProgressStep);
 
             //Logger Settings Up
             Logger.Archive = Path.Combine(Environment.CurrentDirectory, "Logs");
             Logger.LogFile = Path.Combine(Environment.CurrentDirectory, "Logs", "Comidat.log");
+            Logger.Status(Localization.Get("LogInfo"), Assembly.GetEntryAssembly().GetName(), Environment.Version, Environment.OSVersion, Environment.Is64BitOperatingSystem, Environment.MachineName);
             Logger.Progress(1, ProgressStep);
 
             //Console commands activating
